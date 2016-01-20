@@ -1,11 +1,16 @@
 # NeighborhoodToolShed
 
-##Currently implemented features
+##Recently implemented features
 
-1) Loads angular, angular-route, bootstrap (.css & .js), and jquery from CDN (we may want to install the packages to our app natively later)
-#) Angular-route is configured for single page navigation intelligently through angular
-#) Navbar is implemented in a basic sense. The navBar is already responsive between desktop and mobile. Try shrinking it to see the layout change.
-#)
+Loads angular, angular-route, bootstrap (.css & .js), and jquery from CDN (we may want to install the packages to our app natively later)
+
+Angular-route is configured for single page navigation intelligently through angular
+
+Navbar is implemented in a basic sense. The navBar is already responsive between desktop and mobile. Try shrinking it to see the layout change. NavBar is styled using the sandstone theme from <a href="http://bootswatch.com/">bootswatch</a>
+
+There are dummy search and dropdown menu components commented out in the navbar for future use if we want them. They will need to be styled properly.
+
+Folder structure should be easily maintainable through initial builds
 
 ##Instructions for launch
 
