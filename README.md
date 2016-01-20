@@ -10,7 +10,7 @@ Consequently, if something isn't working right for you, try an npm install. It's
 
 You will need <a href="https://nodejs.org/en/">node.js</a>. The download there should bundle with it npm. If not, you will need to find and install <a href="https://www.npmjs.com/">npm</a> as well.
 
-Once these are installed, open a gitbash. In gitbash:
+Once these are installed, open a <a href="http://www.git-scm.com/downloads">gitbash</a>. In gitbash:
 
 ```
 cd <IntendedParentDirectory>
