@@ -26,7 +26,7 @@ This will launch the local server, at which point you can navigate in any browse
 
 Loads angular, angular-route, bootstrap (.css & .js), and jquery from CDN (we may want to install the packages to our app natively later)
 
-Angular-route is configured for single page navigation intelligently through angular
+Angular-route is configured for single page navigation intelligently through angular. Right now it only has 3 pages: Home, Page1, Page2. If you want to modify any of those pages, just modify the .html file for the corresponding page inside the /web/pages/ directory.
 
 Navbar is implemented in a basic sense. The navBar is already responsive between desktop and mobile. Try shrinking it to see the layout change. NavBar is styled using the sandstone theme from <a href="http://bootswatch.com/">bootswatch</a>
 
