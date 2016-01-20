@@ -6,7 +6,7 @@ If you add a new node package, you have to add it to the "dependencies" array in
 
 Consequently, if something isn't working right for you, try an npm install. It's possible somebody add a node package that you don't have.
 
-##Instructions for launch
+##Instructions for first-time launch
 
 You will need <a href="https://nodejs.org/en/">node.js</a>. The download there should bundle with it npm. If not, you will need to find and install <a href="https://www.npmjs.com/">npm</a> as well.
 
