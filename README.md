@@ -1,16 +1,10 @@
 # NeighborhoodToolShed
 
-##Recently implemented features
+##Important notes
 
-Loads angular, angular-route, bootstrap (.css & .js), and jquery from CDN (we may want to install the packages to our app natively later)
+If you add a new node package, you have to add it to the "dependencies" array in package.json. If you don't, your package won't install for other users on the repository.
 
-Angular-route is configured for single page navigation intelligently through angular
-
-Navbar is implemented in a basic sense. The navBar is already responsive between desktop and mobile. Try shrinking it to see the layout change. NavBar is styled using the sandstone theme from <a href="http://bootswatch.com/">bootswatch</a>
-
-There are dummy search and dropdown menu components commented out in the navbar for future use if we want them. They will need to be styled properly.
-
-Folder structure should be easily maintainable through initial builds
+Consequently, if something isn't working right for you, try an npm install. It's possible somebody add a node package that you don't have.
 
 ##Instructions for launch
 
@@ -26,4 +20,18 @@ npm install
 node server.js
 ```
 
-This will launch the local server, at which point you can navigate in any browser to localhost:3000 and test the most recently pushed build of Neighborhood Tool Shed
+This will launch the local server, at which point you can navigate in any browser to localhost:3000 and test the most recently pushed build of Neighborhood Tool Shed.
+
+##Recently implemented features
+
+Loads angular, angular-route, bootstrap (.css & .js), and jquery from CDN (we may want to install the packages to our app natively later)
+
+Angular-route is configured for single page navigation intelligently through angular
+
+Navbar is implemented in a basic sense. The navBar is already responsive between desktop and mobile. Try shrinking it to see the layout change. NavBar is styled using the sandstone theme from <a href="http://bootswatch.com/">bootswatch</a>
+
+There are dummy search and dropdown menu components commented out in the navbar for future use if we want them. They will need to be styled properly.
+
+Folder structure should be easily maintainable through initial builds
+
+
