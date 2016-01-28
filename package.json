@@ -1,18 +1,26 @@
 {
-	"name": "neighborhood-tool-shed",
-	"version": "0.1.0",
-	"description": "A webApp designed to help organize diy projects or contracted work in a community",
-	"author": "Daniel Ribble",
-	"contributors": [ "Aaron Monson", "Aaron Sheffield", "Clint Day", "Curt Merrell", 
-							"Dane Bartholomew", "Garret Cox", "Joshua Katuka", "Paul Cloward" ],
-	"main": "server.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thread-speaker/NeighborhoodToolShed.git"
-	},
-	"dependencies": {
-		"connect": "3.4.0",
-		"serve-static": "1.10.1"
-	},
-	"license": "GPL-3.0"
+  "name": "neighborhood-tool-shed",
+  "version": "0.1.0",
+  "description": "A webApp designed to help organize diy projects or contracted work in a community",
+  "author": "Daniel Ribble",
+  "contributors": [
+    "Aaron Monson",
+    "Aaron Sheffield",
+    "Clint Day",
+    "Curt Merrell",
+    "Dane Bartholomew",
+    "Garret Cox",
+    "Joshua Katuka",
+    "Paul Cloward"
+  ],
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thread-speaker/NeighborhoodToolShed.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4"
+  },
+  "license": "GPL-3.0"
 }
