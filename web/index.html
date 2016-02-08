@@ -6,7 +6,11 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>		
-
+	
+		<!-- Page controllers -->
+<!-- 		<script src="controllers/homeViewCtrl"></script>
+ -->		
+		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/sandstone.min.css">	
 		<link rel="stylesheet" href="css/styles.css">	
@@ -17,19 +21,26 @@
 			app.config(function($routeProvider) {
 				$routeProvider
 					.when('/', {
-						templateUrl: '/pages/Home.html'
+						templateUrl: '/pages/Home.html',
+						caseInsensitiveMatch: true,
+						controller: 'homeViewCtrl'
 					})
 					.when('/Page1', {
-						templateUrl: '/pages/Page1.html'
+						templateUrl: '/pages/Page1.html',
+						caseInsensitiveMatch: true
 					})
 					.when('/Page2', {
-						templateUrl: '/pages/Page2.html'
+						templateUrl: '/pages/Page2.html',
+						caseInsensitiveMatch: true
 					})
 					.otherwise({
 						redirectTo: '/'
 					})
 			});
+			
 		</script>
+		
+		<script src="controllers/homeCtrl.js"></script>
 		
 	</head>
 	<body ng-app="neighborToolApp">
