@@ -30,7 +30,29 @@ app.controller('dashboardCtrl', function($scope) {
 	$scope.commonTools = ["hammer", "saw", "wrench"];	
 	
 	$scope.goClick = function() {
-		var toolFilters = $scope.commonQueries.concat($scope.customQueries);
+		var filterString = "";
+		for(i = 0; i < $scope.commonQueries.length; i++){
+			if($scope.commonQueries[i].query.length > 0){
+				if(filterString.length == 0)
+					filterString += $scope.commonQueries[i].query;
+				else
+					filterString += "," + $scope.commonQueries[i].query;
+			}
+		}
+		
+		for(i = 0; i < $scope.customQueries.length; i++){
+			if($scope.customQueries[i].query.length > 0){
+				if(filterString.length == 0)
+					filterString += $scope.customQueries[i].query;
+				else
+					filterString += "," + $scope.customQueries[i].query;
+			}
+		}
+		
+		if(filterString.length == 0)
+			softAler("Please select one or more tools.")
+				
+		window.location =  "#users?filter=" + filterString;
 	}
 	
 	

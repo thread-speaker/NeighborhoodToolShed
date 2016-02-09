@@ -27,6 +27,11 @@
 						controller: 'profileCtrl',
 						caseInsensitiveMatch: true
 					})
+					.when('/Users', {
+						templateUrl: '/views/users.html',
+						controller: 'usersCtrl',
+						caseInsensitiveMatch: true
+					})
 					.otherwise({
 						redirectTo: '/'
 					})
@@ -37,6 +42,8 @@
 		<!-- Page Controllers -->
 		<script src="controllers/dashboardCtrl.js"></script>
 		<script src="controllers/profileCtrl.js"></script>	
+		<script src="controllers/usersCtrl.js"></script>
+		
 	</head>
 	
 	<body ng-app="neighborToolApp">
