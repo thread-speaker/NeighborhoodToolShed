@@ -22,15 +22,11 @@
 				$routeProvider
 					.when('/', {
 						templateUrl: '/pages/Home.html',
-						caseInsensitiveMatch: true,
-						controller: 'homeViewCtrl'
-					})
-					.when('/Page1', {
-						templateUrl: '/pages/Page1.html',
+						controller: 'homeViewCtrl',
 						caseInsensitiveMatch: true
 					})
-					.when('/Page2', {
-						templateUrl: '/pages/Page2.html',
+					.when('/Profile', {
+						templateUrl: '/pages/profile.html',
 						caseInsensitiveMatch: true
 					})
 					.otherwise({
@@ -41,6 +37,7 @@
 		</script>
 		
 		<script src="controllers/homeCtrl.js"></script>
+		<script src="controllers/profileCtrl.js"></script>
 		
 	</head>
 	<body ng-app="neighborToolApp">

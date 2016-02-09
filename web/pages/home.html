@@ -1,2 +1,9 @@
 <h1>Home</h1>
-{{hello}}
+Search for a tool: <input type="text" ng-model="query">
+
+<div ng-repeat="user in usersWithTool(query)">
+	<span style="width: 100%; padding: 20px; display: block">
+		{{user.username}} <br/>
+		{{user.tools}}
+	</span>
+</div>
