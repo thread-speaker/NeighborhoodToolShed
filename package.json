@@ -19,8 +19,8 @@
     "url": "https://github.com/thread-speaker/NeighborhoodToolShed.git"
   },
   "dependencies": {
-    "body-parser": "^1.14.2",
-    "express": "^4.13.4"
+    "body-parser": "1.14.2",
+    "express": "4.13.4"
   },
   "license": "GPL-3.0"
 }
