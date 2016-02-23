@@ -5,7 +5,7 @@
 	<span ng-repeat="input in commonQueries">
 		<select ng-model="input.query">
 			<option ng-repeat="tool in commonTools" ng-value="tool">{{tool}}</option>
-		</select>
+		</select>		
 		<span class="addTool glyphicon-plus" ng-click="addDropDown(input)"></span>
 		<br/>
 	</span>

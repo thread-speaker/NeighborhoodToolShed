@@ -7,7 +7,7 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 		var tools = ref.child("tools");
 		$scope.commonQueries = [
 			{
-				"query" : ""
+				"query" : "Drill"
 			}
 		];
 
@@ -36,7 +36,7 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 
 		tools.orderByChild("genus").on("child_added", function(snapshot){
 			if ($scope.commonTools.indexOf(snapshot.val().genus) == -1)
-      {// Only add if value is unique
+			{// Only add if value is unique
 				$scope.$apply(function(){
 					$scope.commonTools.push(snapshot.val().genus);
 					// console.log("added: " + snapshot.val().genus);
