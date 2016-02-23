@@ -1,1 +1,10 @@
 <h1>Users</h1>
+
+<ul id="searchResults">
+  <li ng-repeat="tool in queryResults">
+      <strong>
+        {{tool.genus}}
+      </strong>
+      {{tool.species}}
+  </li>
+</ul>
