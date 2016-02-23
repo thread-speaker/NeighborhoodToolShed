@@ -34,6 +34,11 @@
 						controller: 'monsonCtrl',
 						caseInsensitiveMatch: true
 					})
+					.when('/Sandboxes/cloward', {
+						templateUrl: '/views/sandboxes/cloward.html',
+						controller: 'clowardCtrl',
+						caseInsensitiveMatch: true
+					})
 					.when('/Profile', {
 						templateUrl: '/views/profile.html',
 						controller: 'profileCtrl',
@@ -58,6 +63,7 @@
 
 		<!-- sandbox controllers added like this -->
 		<script src="views/sandboxes/controllers/monsonCtrl.js"></script>
+		<script src="views/sandboxes/controllers/clowardCtrl.js"></script>
 
 	</head>
 

@@ -1,1 +1,21 @@
-<h1>Page 1</h1>
+<head>
+</head>
+<body>
+	<div align="left"><h1>Profile Name</h1></div>
+	<img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg" align="left"/>
+	
+	<table border="1" style="width:12%" align="center">
+	<thead>
+		<tr>
+			<th>tool</th>
+			<th>rental status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="tool in ownedTools">
+			<td> {{tool.tool}} </td>
+			<td> {{tool.status}} </td>
+		</tr>
+	</tbody>
+	</table>
+</body>
