@@ -27,7 +27,11 @@
 					})
 					.when('/Sandboxes', {
 						templateUrl: '/views/sandboxes.html',
-						controller: 'sandboxCtrl',
+						caseInsensitiveMatch: true
+					})
+					.when('/Sandboxes/monson', {
+						templateUrl: '/views/sandboxes/monson.html',
+						controller: 'monsonCtrl',
 						caseInsensitiveMatch: true
 					})
 					.when('/Profile', {
@@ -51,6 +55,9 @@
 		<script src="controllers/dashboardCtrl.js"></script>
 		<script src="controllers/profileCtrl.js"></script>
 		<script src="controllers/usersCtrl.js"></script>
+
+		<!-- sandbox controllers added like this -->
+		<script src="views/sandboxes/controllers/monsonCtrl.js"></script>
 
 	</head>
 
