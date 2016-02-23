@@ -35,7 +35,44 @@ var cities = [
 //Angular App Module and Controller
 var app = angular.module('neighborToolApp');
 
-app.controller('MapCtrl', function ($scope) {
+app.directive('map', function(){
+    return {
+        restrict: 'AE',
+        replace: false,
+        template: '',
+        link: function(scope, elem, attrs) {
+            var infoWindow = new google.maps.InfoWindow();
+
+            var createMarker = function (info) {
+                var marker = new google.maps.Marker({
+                    map: elem,
+                    position: new google.maps.LatLng(info.lat, info.long),
+                    title: info.city
+                });
+                
+                marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+                
+                google.maps.event.addListener(marker, 'click', function() {
+                    infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                    infoWindow.open(scope.map, marker);
+                });
+                
+                scope.markers.push(marker);
+            };
+
+            for (i = 0; i < attrs.markers.length; i++) {
+                createMarker(attrs.markers[i]);
+            }
+
+            scope.openInfoWindow = function(e, selectedMarker){
+                e.preventDefault();
+                google.maps.event.trigger(selectedMarker, 'click');
+            }
+        }
+    };
+});
+
+/*app.controller('MapCtrl', function ($scope) {
 
     var mapOptions = {
         zoom: 4,
@@ -73,7 +110,7 @@ app.controller('MapCtrl', function ($scope) {
         e.preventDefault();
         google.maps.event.trigger(selectedMarker, 'click');
     }
-});
+});*/
 
 /*
 <div ng-app="mapsApp" ng-controller="MapCtrl">
