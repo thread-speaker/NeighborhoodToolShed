@@ -1,21 +1,39 @@
 <head>
 </head>
 <body>
-	<div align="left"><h1>Profile Name</h1></div>
-	<img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg" align="left"/>
+	<img id="profileImg" src={{userData.profileImg}} />	
+	<div id="profileInfo">
+		 <strong> Name:</strong> {{userData.name}} </br>
+		 <strong>Address:</strong> {{userData.address}}</br>
+		 <strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}
+	</div>	
 	
-	<table border="1" style="width:12%" align="center">
-	<thead>
-		<tr>
-			<th>tool</th>
-			<th>rental status</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="tool in ownedTools">
-			<td> {{tool.tool}} </td>
-			<td> {{tool.status}} </td>
-		</tr>
-	</tbody>
-	</table>
+	<div id="userTools">
+		<h2> User Tools </h2>
+		Add Tool: 
+		<input type="text" id="myText"> </input> <button ng-click="addTool()"> Go </button>
+		<ul ng-repeat="tool in ownedTools">
+			<li> {{tool.tool}}</li>
+		</ul>
+	</div>
+	
+	<!--
+	<div id="Rented Tools">
+		<table border="1">
+		<caption>Rented Tools</caption>
+		<thead>
+			<tr>
+				<th>tool</th>
+				<th>due date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tool in rentalTools">
+				<td> {{tool.tool}} </td>
+				<td> {{tool.dueDate}} </td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	-->
 </body>

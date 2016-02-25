@@ -119,3 +119,35 @@
 
 
 /* endRegion */
+
+
+#profileImg {
+	
+	border: 2px solid gray;
+}
+
+#profileInfo {
+	
+	border: 2px solid gray;
+	font-size: 130%;
+}
+
+#userTools {
+	align:center;
+	font-size: 130%;
+}
+
+#userTools li{
+	border-radius=100px;
+	background-color: #ADD8E6;
+	list-style-image: none;
+	width:200px;
+	padding: 10px;
+	align-items:center;
+	
+}
+
+#userTools li:hover{
+	background-color: #FF0000;
+	color: black;
+}
