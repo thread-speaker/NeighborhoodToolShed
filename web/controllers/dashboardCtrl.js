@@ -5,6 +5,8 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 
 		var ref = new Firebase("https://amber-torch-1283.firebaseio.com/");
 		var tools = ref.child("tools");
+		var newTools = ref.child("newTools");
+
 		$scope.commonQueries = [
 			{
 				"query" : ""
@@ -32,18 +34,27 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 		};
 
 		// $scope.commonTools = ["hammer", "saw", "wrench"];
-		$scope.commonTools = [];
-
-		tools.orderByChild("genus").on("child_added", function(snapshot){
-			if ($scope.commonTools.indexOf(snapshot.val().genus) == -1)
-      {// Only add if value is unique
-				$scope.$apply(function(){
-					$scope.commonTools.push(snapshot.val().genus);
-					// console.log("added: " + snapshot.val().genus);
-				});
-
-			}
-    });
+		$scope.commonTools = $firebaseArray(tools.orderByChild("genus"));
+		$scope.isFirstInstanceOf = function(value, index, array){
+				var i = -1;
+				for (var variable in array) {
+					if (array[variable].genus == value.genus){
+						i = variable;
+						break;
+					}
+				}
+			return i == index ;
+		};
+		// tools.orderByChild("genus").on("child_added", function(snapshot){
+		// 	if ($scope.commonTools.indexOf(snapshot.val().genus) == -1)
+    //   {// Only add if value is unique
+		// 		$scope.$apply(function(){
+		// 			$scope.commonTools.push(snapshot.val().genus);
+		// 			// console.log("added: " + snapshot.val().genus);
+		// 		});
+		//
+		// 	}
+    // });
 
 		$scope.goClick = function() {
 			var filterString = "";
