@@ -127,8 +127,6 @@
 }
 
 #profileInfo {
-	
-	border: 2px solid gray;
 	font-size: 130%;
 }
 
@@ -137,8 +135,19 @@
 	font-size: 130%;
 }
 
-#userTools li{
-	border-radius=100px;
+#userTools ul {
+	list-style-type: none;
+}
+
+#userTools ol {
+	
+	list-style-type: none;
+	border: 2px solid gray;
+}
+
+#userTools ul li{
+	border: .5px solid gray;
+	border-radius=50px;
 	background-color: #ADD8E6;
 	list-style-image: none;
 	width:200px;
@@ -147,7 +156,8 @@
 	
 }
 
-#userTools li:hover{
-	background-color: #FF0000;
+#userTools ul li:hover{
+	background-color: #00DFFF;
+	border: 1px solid gray;
 	color: black;
 }

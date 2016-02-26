@@ -10,11 +10,23 @@
 	
 	<div id="userTools">
 		<h2> User Tools </h2>
-		Add Tool: 
-		<input type="text" id="myText"> </input> <button ng-click="addTool()"> Go </button>
-		<ul ng-repeat="tool in ownedTools">
-			<li> {{tool.tool}}</li>
-		</ul>
+		<!-- Add Tool: 
+		<input type="text" id="myText"> </input> <button ng-click="addTool()"> Go </button> -->
+		<button ng-click="addTool()"> Add Tool </button>
+		<div>
+			<ol ng-repeat="pTool in allProgramTools" ng-if="displayProgramTools">
+				<li ng-click="displayChildrenTools(pTool)">
+					{{pTool.parentTool}}
+					<ul ng-repeat="cTool in pTool.childrenTools">
+						<li ng-if="pTool.clicked">
+						<input type="checkbox">	{{cTool}} <br>
+						</li>
+					</ul>
+				</li>
+			</ol>
+			</br>
+			<button ng-click="endAddTool()" ng-if="doneButtonDisplay"> Done </button>
+		</div>
 	</div>
 	
 	<!--
