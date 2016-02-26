@@ -37,42 +37,19 @@ var app = angular.module('neighborToolApp');
 
 app.directive('map', function(){
     return {
-        restrict: 'AE',
-        replace: false,
-        template: '',
-        link: function(scope, elem, attrs) {
-            var infoWindow = new google.maps.InfoWindow();
-
-            var createMarker = function (info) {
-                var marker = new google.maps.Marker({
-                    map: elem,
-                    position: new google.maps.LatLng(info.lat, info.long),
-                    title: info.city
-                });
-                
-                marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
-                
-                google.maps.event.addListener(marker, 'click', function() {
-                    infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
-                    infoWindow.open(scope.map, marker);
-                });
-                
-                scope.markers.push(marker);
-            };
-
-            for (i = 0; i < attrs.markers.length; i++) {
-                createMarker(attrs.markers[i]);
-            }
-
-            scope.openInfoWindow = function(e, selectedMarker){
-                e.preventDefault();
-                google.maps.event.trigger(selectedMarker, 'click');
-            }
-        }
+        restrict: 'E',
+        replace: true,
+        scope: {
+            mapName: '@',
+            markers: '@',
+        },
+        template: '<div id="{{mapName}}" style="height:420px;width:600px;"></div>',
+        controller: 'mapCtrl',
     };
 });
 
-/*app.controller('MapCtrl', function ($scope) {
+app.controller('mapCtrl', function ($scope) {
+    $scope.mapName = $scope.mapName || 'map';
 
     var mapOptions = {
         zoom: 4,
@@ -80,7 +57,7 @@ app.directive('map', function(){
         mapTypeId: google.maps.MapTypeId.TERRAIN
     }
 
-    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    $scope.map = new google.maps.Map(document.getElementById($scope.mapname), mapOptions);
 
     $scope.markers = [];
     
@@ -110,7 +87,7 @@ app.directive('map', function(){
         e.preventDefault();
         google.maps.event.trigger(selectedMarker, 'click');
     }
-});*/
+});
 
 /*
 <div ng-app="mapsApp" ng-controller="MapCtrl">
