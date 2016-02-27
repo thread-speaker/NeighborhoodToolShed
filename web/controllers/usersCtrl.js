@@ -9,17 +9,22 @@ app.controller('usersCtrl',
     $scope.queries = $route.current.params.filter.split(',');
 
     //Add them to the ng-repeat array;
-    $scope.queryResults = [];
-    for (var i in $scope.queries){
-      var query = $scope.queries[i];
-      tools.orderByChild("genus")
-          .startAt(query).endAt(query + "\uf8ff")
-          .on("child_added", function(snapshot){
-            $scope.$apply(function(){  //Do it NOW
-              $scope.queryResults.push(snapshot.val());
-            });
-          });
-    }
+    $scope.queryResults = $firebaseArray(tools.orderByChild("genus"));
+
+    $scope.matchesQueries = function(value, index, array){
+        return $scope.queries.indexOf(value.genus) >= 0;
+    };
+
+    // for (var i in $scope.queries){
+    //   var query = $scope.queries[i];
+    //   tools.orderByChild("genus")
+    //       .startAt(query).endAt(query + "\uf8ff")
+    //       .on("child_added", function(snapshot){
+    //         $scope.$apply(function(){  //Do it NOW
+    //           $scope.queryResults.push(snapshot.val());
+    //         });
+    //       });
+    // }
 
 
 

@@ -1,7 +1,7 @@
 <h1>Users</h1>
 
 <ul id="searchResults">
-  <li ng-repeat="tool in queryResults">
+  <li ng-repeat="tool in queryResults | filter:matchesQueries">
       <strong>
         {{tool.genus}}
       </strong>
