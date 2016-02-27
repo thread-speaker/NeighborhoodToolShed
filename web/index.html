@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="shortcut icon" href="favicon.ico" >
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Neighborhood Toolshed</title>
 
@@ -7,7 +8,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.min.js"></script>
 		<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -22,6 +23,15 @@
 					.when('/', {
 						templateUrl: '/views/dashboard.html',
 						controller: 'dashboardCtrl',
+						caseInsensitiveMatch: true
+					})
+					.when('/Sandboxes', {
+						templateUrl: '/views/sandboxes.html',
+						caseInsensitiveMatch: true
+					})
+					.when('/Sandboxes/monson', {
+						templateUrl: '/views/sandboxes/monson.html',
+						controller: 'monsonCtrl',
 						caseInsensitiveMatch: true
 					})
 					.when('/Profile', {
@@ -53,6 +63,9 @@
 		<script src="controllers/savedContactsCtrl.js"></script>
 
 
+		<!-- sandbox controllers added like this -->
+		<script src="views/sandboxes/controllers/monsonCtrl.js"></script>
+
 	</head>
 
 	<body ng-app="neighborToolApp">
@@ -75,6 +88,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="#profile">Profile</a></li>
 						<li><a href="#savedContacts">Saved Contacts Test</a></li>
+						<li><a href="#sandboxes">Sandboxes</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a style="padding: 15px" href="#">Login</a></li>
