@@ -25,6 +25,11 @@
 						controller: 'dashboardCtrl',
 						caseInsensitiveMatch: true
 					})
+					.when('/SearchCriteria', {
+						templateUrl: '/views/searchCriteria.html',
+						controller: 'searchCriteriaCtrl',
+						caseInsensitiveMatch: true
+					})
 					.when('/Sandboxes', {
 						templateUrl: '/views/sandboxes.html',
 						caseInsensitiveMatch: true
@@ -66,6 +71,7 @@
 		<script src="controllers/profileCtrl.js"></script>
 		<script src="controllers/usersCtrl.js"></script>
 		<script src="controllers/savedContactsCtrl.js"></script>
+		<script src="controllers/searchCriteriaCtrl.js"></script>
 
 
 		<!-- sandbox controllers added like this -->

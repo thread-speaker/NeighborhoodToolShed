@@ -79,7 +79,7 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 			if(filterString.length == 0)
 				softAler("Please select one or more tools.")
 
-			window.location =  "#users?filter=" + filterString;
+			window.location =  "#SearchCriteria?filter=" + filterString;
 		};
 
 
