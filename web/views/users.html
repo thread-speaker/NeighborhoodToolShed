@@ -1,10 +1,9 @@
 <h1>Users</h1>
 
 <ul id="searchResults">
-  <li ng-repeat="tool in queryResults | filter:matchesQueries">
+  <li ng-repeat="user in usersToDisplay">
       <strong>
-        {{tool.genus}}
+        {{user.username}}
       </strong>
-      {{tool.species}}
   </li>
 </ul>

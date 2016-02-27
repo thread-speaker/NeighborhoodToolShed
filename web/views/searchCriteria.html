@@ -1,10 +1,15 @@
+<h3><input type="button" class="btnGo btn-default" ng-click="searchAll()" value="Search All"/></h3>
+ - or -
 <h3>Select all specific tool types that you want to search</h3>
 
 <ul id="searchResults">
   <li ng-repeat="tool in queryResults | filter:matchesQueries">
       <strong>
-        {{tool.genus}}
+      {{tool.genus}}
       </strong>
       {{tool.species}}
+	  <input type="checkbox" ng-model="tool.checked" ng-change="checkChange(tool)" />
   </li>
 </ul>
+
+<h3><input type="button" class="btnGo btn-default" ng-click="searchSelected()" value="Search Selected"/></h3>
