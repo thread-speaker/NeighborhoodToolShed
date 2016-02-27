@@ -1,0 +1,10 @@
+<h3>Select all specific tool types that you want to search</h3>
+
+<ul id="searchResults">
+  <li ng-repeat="tool in queryResults | filter:matchesQueries">
+      <strong>
+        {{tool.genus}}
+      </strong>
+      {{tool.species}}
+  </li>
+</ul>

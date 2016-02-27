@@ -33,7 +33,6 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 			);
 		};
 
-		// $scope.commonTools = ["hammer", "saw", "wrench"];
 		$scope.commonTools = $firebaseArray(tools.orderByChild("genus"));
 		$scope.isFirstInstanceOf = function(value, index, array){
 				var i = -1;
@@ -45,16 +44,6 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 				}
 			return i == index ;
 		};
-		// tools.orderByChild("genus").on("child_added", function(snapshot){
-		// 	if ($scope.commonTools.indexOf(snapshot.val().genus) == -1)
-    //   {// Only add if value is unique
-		// 		$scope.$apply(function(){
-		// 			$scope.commonTools.push(snapshot.val().genus);
-		// 			// console.log("added: " + snapshot.val().genus);
-		// 		});
-		//
-		// 	}
-    // });
 
 		$scope.goClick = function() {
 			var filterString = "";
