@@ -17,13 +17,17 @@ app.controller('usersCtrl',
         var uid = snap.key();
         console.log(uid);
         var user = $scope.users.child(uid).on("child_added", function(snap){
+					console.log("apply");
           var key = snap.key();
           var val = snap.val();
-          if (!users.hasOwnProperty(uid))
+
+          if (!users.hasOwnProperty(uid)){
             users[uid] = {};
+					}
+
           $scope.$apply(function(){users[uid][key] = val;});
 
-          console.log(users[uid]);
+          console.log("users" + users);
         });
       });
     }
