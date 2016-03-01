@@ -4,7 +4,7 @@
 	Select popular tool(s): <br/>
 	<span ng-repeat="input in commonQueries">
 		<select ng-model="input.query">
-			<option ng-repeat="tool in commonTools" ng-value="tool">{{tool}}</option>
+			<option ng-repeat="tool in commonTools | filter:isFirstInstanceOf" ng-value="tool.genus">{{tool.genus}}</option>
 		</select>
 		<span class="addTool glyphicon-plus" ng-click="addDropDown(input)"></span>
 		<br/>
@@ -12,10 +12,10 @@
 	<br/> - and / or - <br/><br/>
 	Search for specific tool(s): <br/>
 	<span ng-repeat="input in customQueries">
-		<input type="text" ng-model="input.query"> 
+		<input type="text" ng-model="input.query">
 		<span class="addTool glyphicon-plus" ng-click="addSearch(input)"></span>
 		<br/>
 	</span>
-	
+
 	<input type="button" class="btnGo btn-default" ng-click="goClick()" value="Go"></input>
 </span>
