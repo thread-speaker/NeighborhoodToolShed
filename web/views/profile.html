@@ -7,17 +7,24 @@
 		 <strong>Address:</strong> {{userData.address}}</br>
 		 <strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}
 	</div>	
+	</br>
+	
+	<div ng-Hide="updateMode" style="border: 1px solid gray">
+	<h2>User Tool List</h2>
+		<div ng-repeat="gTool in ownedTools">
+			<p ng-repeat="sTool in gTool.speciesTools"><strong> {{gTool.genusTool + " " + sTool}} </strong></p>
+		</div>
+	</div>
 	
 	<div id="userTools">
-		<h2> User Tools </h2>
-		<button ng-click="addToolButton()"> Add Tool </button>
+		<button ng-click="updateToolButton()"> Update Tool List </button>
 		<div>
 			<ol ng-repeat="gTool in allProgramTools" ng-if="displayProgramTools">
 				<li>
 					<header ng-click="displayChildrenTools(gTool)"> {{gTool.genusTool}}</header>
 					<ul ng-repeat="sTool in gTool.speciesTools">
 						<li ng-if="gTool.clicked">
-						<input type="checkbox" ng-change="addTool(gTool, sTool)" ng-model="ownerTools" ng-init="ownerTools=isToolOwnedBoolean(gTool,sTool)" />{{sTool}} </br>
+						<input type="checkbox" ng-change="updateTool(gTool, sTool)" ng-model="checkedTools" ng-init="checkedTools=isToolOwnedBoolean(gTool,sTool)" />{{sTool}} </br>
 						</li>
 					</ul>
 				</li>

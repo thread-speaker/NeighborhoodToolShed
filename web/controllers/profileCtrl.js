@@ -9,6 +9,7 @@ app.controller('profileCtrl', function($scope) {
 
 	$scope.ownedTools = [];
 	$scope.testTools = [];
+	$scope.updateMode = false;
 	
 	$scope.allProgramTools = [
 		
@@ -16,7 +17,9 @@ app.controller('profileCtrl', function($scope) {
 		{genusTool: "screw driver", speciesTools: ["phillips", "flat"], clicked: false},
 	];
 	
-	$scope.addToolButton = function() {
+	$scope.updateToolButton = function() {
+		
+		$scope.updateMode = true;
 		
 		$scope.displayProgramTools = true;
 		
@@ -35,6 +38,7 @@ app.controller('profileCtrl', function($scope) {
 			$scope.allProgramTools[i].clicked = false;
 		}
 		
+		$scope.updateMode = false;
 		$scope.doneButtonDisplay = false;
 	}
 	
@@ -97,7 +101,7 @@ app.controller('profileCtrl', function($scope) {
 		return false;
 	}
 	
-	$scope.addTool = function(gTool, sTool){
+	$scope.updateTool = function(gTool, sTool){
 		
 		var speciesIndex = $scope.isToolOwned(gTool,sTool);
 		
