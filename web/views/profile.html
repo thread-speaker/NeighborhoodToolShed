@@ -10,42 +10,21 @@
 	
 	<div id="userTools">
 		<h2> User Tools </h2>
-		<!-- Add Tool: 
-		<input type="text" id="myText"> </input> <button ng-click="addTool()"> Go </button> -->
-		<button ng-click="addTool()"> Add Tool </button>
+		<button ng-click="addToolButton()"> Add Tool </button>
 		<div>
-			<ol ng-repeat="pTool in allProgramTools" ng-if="displayProgramTools">
-				<li ng-click="displayChildrenTools(pTool)">
-					{{pTool.parentTool}}
-					<ul ng-repeat="cTool in pTool.childrenTools">
-						<li ng-if="pTool.clicked">
-						<input type="checkbox">	{{cTool}} <br>
+			<ol ng-repeat="gTool in allProgramTools" ng-if="displayProgramTools">
+				<li>
+					<header ng-click="displayChildrenTools(gTool)"> {{gTool.genusTool}}</header>
+					<ul ng-repeat="sTool in gTool.speciesTools">
+						<li ng-if="gTool.clicked">
+						<input type="checkbox" ng-change="addTool(gTool, sTool)" ng-model="ownerTools" ng-init="ownerTools=isToolOwnedBoolean(gTool,sTool)" />{{sTool}} </br>
 						</li>
 					</ul>
 				</li>
 			</ol>
 			</br>
-			<button ng-click="endAddTool()" ng-if="doneButtonDisplay"> Done </button>
+			<button ng-click="endAddTool()" ng-if="doneButtonDisplay"> {{ownedTools.length}} </button>
+			<button> {{testTools.length}} </button>
 		</div>
 	</div>
-	
-	<!--
-	<div id="Rented Tools">
-		<table border="1">
-		<caption>Rented Tools</caption>
-		<thead>
-			<tr>
-				<th>tool</th>
-				<th>due date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="tool in rentalTools">
-				<td> {{tool.tool}} </td>
-				<td> {{tool.dueDate}} </td>
-			</tr>
-		</tbody>
-		</table>
-	</div>
-	-->
 </body>

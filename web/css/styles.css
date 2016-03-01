@@ -140,8 +140,10 @@
 }
 
 #userTools ol {
-	
 	list-style-type: none;
+}
+
+#userTools header {
 	border: 2px solid gray;
 }
 
@@ -154,10 +156,4 @@
 	padding: 10px;
 	align-items:center;
 	
-}
-
-#userTools ul li:hover{
-	background-color: #00DFFF;
-	border: 1px solid gray;
-	color: black;
 }
