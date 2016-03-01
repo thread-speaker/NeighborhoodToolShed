@@ -2,6 +2,18 @@ var app = angular.module('neighborToolApp');
 
 app.controller('usersCtrl',
 	function($scope, $route, $firebaseObject) {
+		//Get Location
+		var location = {};
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+    }
+    function showPosition(position){
+      location =  {"latitude": position.coords.latitude, "longitude":position.coords.longitude };
+      //TODO reverse geocoding
+      // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
+    }
+
     var ref = new Firebase("https://amber-torch-1283.firebaseio.com/");
 		var tools = ref.child("tools");
     var newTools = ref.child("newTools");
