@@ -1,15 +1,40 @@
 var app = angular.module('neighborToolApp');
 
 app.controller('profileCtrl', function($scope) {
-	
+		
 	$scope.userData = 
 		{ name: "Cole Reasch", profileImg: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg",
 			address: "Provo, Utah", preferredContactInfo: "Provo Forever"}
-	
+		
 
 	$scope.ownedTools = [];
 	$scope.testTools = [];
 	$scope.updateMode = false;
+	$scope.editMode = false;
+	
+	$scope.isEditMode = function() {
+		$scope.editMode = true;
+		
+	}
+	
+	$scope.showProfileInfo = function() {
+		if($scope.editMode === true) 
+			return false;
+		else
+			return true;
+	}
+	
+	$scope.showEditProfileInfo = function() {
+		if($scope.editMode === true) 
+			return true;
+		else
+			return false;
+	}
+	
+	$scope.finishEditMode = function() {
+		$scope.editMode = false;
+		
+	}
 	
 	$scope.allProgramTools = [
 		

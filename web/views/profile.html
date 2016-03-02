@@ -1,13 +1,27 @@
 <head>
 </head>
 <body>
+
 	<img id="profileImg" src={{userData.profileImg}} />	
-	<div id="profileInfo">
-		 <strong> Name:</strong> {{userData.name}} </br>
-		 <strong>Address:</strong> {{userData.address}}</br>
-		 <strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}
-	</div>	
 	</br>
+	</br>
+	
+	
+	<div id="profileInfo" ng-if="showProfileInfo()">
+		<button ng-click="isEditMode()">Edit Profile Info</button></br>
+		<strong> Name:</strong> {{userData.name}} </br>
+		<strong>Address:</strong> {{userData.address}}</br>
+		<strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}</br>
+	</div>
+	</br>
+	</br>
+	
+	<div id="profileInfo" ng-if="showEditProfileInfo()">
+		<strong> Name:</strong><input type="text" ng-Model="userData.name"/></br>
+		<strong> Address:</strong><input type="text" ng-Model="userData.address"/></br>
+		<strong> Preferred Contact Information:</strong><input type="text" ng-Model="userData.preferredContactInfo"/></br>
+		<button ng-click="finishEditMode()"> Finished </button>
+	</div>
 	
 	<div ng-Hide="updateMode" style="border: 1px solid gray">
 	<h2>User Tool List</h2>
