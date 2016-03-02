@@ -25,6 +25,11 @@
 						controller: 'dashboardCtrl',
 						caseInsensitiveMatch: true
 					})
+					.when('/login', {
+						templateUrl: '/views/login.html',
+						controller: 'loginController',
+						caseInsensitiveMatch: true
+					})
 					.when('/SearchCriteria', {
 						templateUrl: '/views/searchCriteria.html',
 						controller: 'searchCriteriaCtrl',
@@ -72,6 +77,7 @@
 		<script src="controllers/usersCtrl.js"></script>
 		<script src="controllers/savedContactsCtrl.js"></script>
 		<script src="controllers/searchCriteriaCtrl.js"></script>
+		<script src="controllers/loginController.js"></script>
 
 
 		<!-- sandbox controllers added like this -->
@@ -103,7 +109,7 @@
 						<li><a href="#sandboxes">Sandboxes</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a style="padding: 15px" href="#">Login</a></li>
+						<li><a style="padding: 15px" href="#login">Login</a></li>
 					</ul>
 				</div>
 			</div>
