@@ -8,48 +8,37 @@ app.controller('dtbCtrl', function($scope, $route, $firebaseArray) {
 	$scope.transactions = mockTransactions; //use mockup until DBs populated
 	$scope.getUserId = function() {
 		// return ref.getAuth().uid;
-		return 'Reed'; //mock situation
+		return mockUserId;
 	}
-	// function isAuth() {
-	// }
 	$scope.saveTransaction = function(t) {
 		// transactions.$save(t);
 	}
-	$scope.sendRequest = function(t) {
-		// transactions.$save(t);
-		// transactions.$push(t);
+
+	$scope.sendNewRequest = function(t) {
+		if(t.transactionStatus == "new")
+			t.transactionStatus = "pending"
+		else
+			throw "transaction status not valid. not sending request."
+		$scope.saveTransaction(t);
 	}
-	// function Transaction(t) {
-	// 	this._t_obj = t;
-	// 	this.save = function(t) {
-	// 		// transactions.$save(t);
-	// 	}
-	// 	this.sendRequest = function(t) {
-	// 		// transactions.$push(t);
-	// 		transactions.push(t);
-	// 	}
-	// }
-	
-	// $scope.userInvolvement = function(t) {
-	// 	if(t.borrower == getUserId())
-	// 		return "borrower"
-	// 	else if(t.lender == getUserId())
-	// 		return "lender"
-	// 	else
-	// 		throw "user is neither borrower nor lender in transaction!"
-	// }
 	$scope.createNewRequest = function() {
 		t = {
 			Lender: "",
-			Borrower: getUserId(),
-			status: "",
+			Borrower: $scope.getUserId(),
+			transactionStatus: "new",
 			ToolLoaned: "",
-			Start: "",
-			End: ""
+			TransactionPeriod: {
+				Start: Date(),
+				End: ""
+			}
 		};
-		transactions.push(t);
+		$scope.transactions.push(t);
 		return t;
-		// return new CreateTransaction(t);	
+	}
+	$scope.getEndDate = function(dateStr, weeks) {
+		date = new Date(dateStr);
+		//http://stackoverflow.com/questions/6963311/add-days-to-a-date-object
+		return new Date(date.setTime(date.getTime() + 7*weeks*86400000)).toString();
 	}
 	$scope.advanceTransaction = function(t) {
 		switch(t.transactionStatus) {
@@ -70,7 +59,7 @@ app.controller('dtbCtrl', function($scope, $route, $firebaseArray) {
 				break;
 			default: throw "Unrecognized transactionStatus: " + t.transactionStatus;
 		}
-		saveTransaction(t);
+		$scope.saveTransaction(t);
 	}
 	$scope.termTransaction = function(t) {
 		switch(t.transactionStatus) {
@@ -91,190 +80,153 @@ app.controller('dtbCtrl', function($scope, $route, $firebaseArray) {
 				break;
 			default: throw "Unrecognized transactionStatus: " + t.transactionStatus;
 		}
+		$scope.saveTransaction(t);
 	}
 	
-
-	// $scope.isBorrower = function(t) {
-	// 	if(t.borrower == getUserId())
-	// 		return true;
-	// 	return false;
-	// }
-	// $scope.isLender = function(t) {
-	// 	if(t.lender == getUserId())
-	// 		return true;
-	// 	return false;
-	// }
-	$scope.statuses = {
-		PENDING: 0,
-		APPROVED: 1,
-		REJECTED: 2,
-		COMMITED: 3,
-		CANCELLED: 4
-	};
-	// function Transaction() {
-	// 	this.status = statutes.PENDING;
-	// 	this.updateStatus = function() {
-	// }
-
-	// transactions.on("child_added", function(snapshot) {
-	// 	//if this user is Lender
-	// 	t = snapshot.val()
-	// 	if(getUid() == t.lender) {
-	// 	
-	// 	} else if(getUid() == t.borrower) {
-	// 	
-	// 	} else throw "transaction item doesn't belong to this user";
-	// 	//$scope.transactions.push(new LenderTransaction(...))
-	// 	//else if ...
-	// 	//else error
-	// });
-	// //Borrower API
-	// $scope.requestTool = function() {
-	// $scope.confirmTransaction = function() {
-	// //Lender API
-	// $scope.transactionHistory = function() {
-	// 	//use user id, auth data...
-	// 	//...
-	// 	//return transactions as list of transaction objects
-	// }
+	$scope.mockUsers = ["Reed", "Alice","Bob","Stevia","Jamie","Avery","Ashton"];
+	$scope.mockTools = ["wrench","hammer","screwdriver","nail-gun"];
 });
-var mockTransactions =[ { transactionStatus: 'approved',
-    Lender: 'Bob',
-    Borrower: 'Reed',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'cancelled',
+var mockUserId = "Reed";
+// var mockTools = ["wrench","hammer","screwdriver","nail-gun"];
+var mockTransactions
+
+var mockTransactions = [ { transactionStatus: 'committed',
     Lender: 'Reed',
-    Borrower: 'Bob',
-    ToolLoaned: 'nail-gun',
+    Borrower: 'Alice',
+    ToolLoaned: 'hammer',
     TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'rejected',
-    Lender: 'Bob',
-    Borrower: 'Reed',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'committed',
-    Lender: 'Jamie',
-    Borrower: 'Reed',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'committed',
-    Lender: 'Reed',
-    Borrower: 'Avery',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'approved',
-    Lender: 'Reed',
-    Borrower: 'Bob',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
+     { Start: 'Sat Sep 17 2016 21:00:00 GMT-0600 (MDT)',
+       End: 'Thu Nov 24 2016 02:00:00 GMT-0700 (MST)' } },
   { transactionStatus: 'approved',
     Lender: 'Avery',
     Borrower: 'Reed',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'pending',
-    Lender: 'Reed',
-    Borrower: 'Bob',
-    ToolLoaned: 'wrench',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'pending',
-    Lender: 'Reed',
-    Borrower: 'Alice',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'approved',
-    Lender: 'Reed',
-    Borrower: 'Bob',
-    ToolLoaned: 'hammer',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'approved',
-    Lender: 'Reed',
-    Borrower: 'Avery',
-    ToolLoaned: 'hammer',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'committed',
-    Lender: 'Ashton',
-    Borrower: 'Reed',
-    ToolLoaned: 'hammer',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'approved',
-    Lender: 'Alice',
-    Borrower: 'Reed',
     ToolLoaned: 'screwdriver',
     TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
+     { Start: 'Fri Jun 24 2016 18:00:00 GMT-0600 (MDT)',
+       End: 'Tue Aug 16 2016 17:00:00 GMT-0600 (MDT)' } },
   { transactionStatus: 'committed',
+    Lender: 'Reed',
+    Borrower: 'Avery',
+    ToolLoaned: 'wrench',
+    TransactionPeriod: 
+     { Start: 'Thu Sep 22 2016 12:00:00 GMT-0600 (MDT)',
+       End: 'Fri Nov 04 2016 17:00:00 GMT-0600 (MDT)' } },
+  { transactionStatus: 'committed',
+    Lender: 'Reed',
+    Borrower: 'Stevia',
+    ToolLoaned: 'screwdriver',
+    TransactionPeriod: 
+     { Start: 'Tue Nov 01 2016 19:00:00 GMT-0600 (MDT)',
+       End: 'Fri Jan 27 2017 21:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'committed',
+    Lender: 'Reed',
+    Borrower: 'Bob',
+    ToolLoaned: 'nail-gun',
+    TransactionPeriod: 
+     { Start: 'Thu Dec 15 2016 01:00:00 GMT-0700 (MST)',
+       End: 'Wed Jan 18 2017 23:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'pending',
     Lender: 'Reed',
     Borrower: 'Ashton',
     ToolLoaned: 'screwdriver',
     TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'approved',
-    Lender: 'Reed',
-    Borrower: 'Alice',
+     { Start: 'Sun Oct 16 2016 03:00:00 GMT-0600 (MDT)',
+       End: 'Fri Dec 16 2016 08:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'cancelled',
+    Lender: 'Stevia',
+    Borrower: 'Reed',
     ToolLoaned: 'screwdriver',
     TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
+     { Start: 'Wed Feb 03 2016 19:00:00 GMT-0700 (MST)',
+       End: 'Thu Oct 20 2016 05:00:00 GMT-0600 (MDT)' } },
+  { transactionStatus: 'rejected',
+    Lender: 'Reed',
+    Borrower: 'Jamie',
+    ToolLoaned: 'hammer',
+    TransactionPeriod: 
+     { Start: 'Tue Nov 29 2016 15:00:00 GMT-0700 (MST)',
+       End: 'Thu Jan 26 2017 13:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'committed',
+    Lender: 'Stevia',
+    Borrower: 'Reed',
+    ToolLoaned: 'screwdriver',
+    TransactionPeriod: 
+     { Start: 'Thu Nov 17 2016 06:00:00 GMT-0700 (MST)',
+       End: 'Thu Jan 05 2017 14:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'pending',
+    Lender: 'Stevia',
+    Borrower: 'Reed',
+    ToolLoaned: 'nail-gun',
+    TransactionPeriod: 
+     { Start: 'Sat Oct 08 2016 21:00:00 GMT-0600 (MDT)',
+       End: 'Thu Nov 10 2016 02:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'committed',
+    Lender: 'Alice',
+    Borrower: 'Reed',
+    ToolLoaned: 'screwdriver',
+    TransactionPeriod: 
+     { Start: 'Tue Sep 13 2016 12:00:00 GMT-0600 (MDT)',
+       End: 'Fri Dec 16 2016 11:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'pending',
+    Lender: 'Alice',
+    Borrower: 'Reed',
+    ToolLoaned: 'nail-gun',
+    TransactionPeriod: 
+     { Start: 'Tue Aug 16 2016 09:00:00 GMT-0600 (MDT)',
+       End: 'Fri Oct 07 2016 04:00:00 GMT-0600 (MDT)' } },
+  { transactionStatus: 'rejected',
+    Lender: 'Alice',
+    Borrower: 'Reed',
+    ToolLoaned: 'wrench',
+    TransactionPeriod: 
+     { Start: 'Thu Aug 25 2016 06:00:00 GMT-0600 (MDT)',
+       End: 'Thu Nov 24 2016 05:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'pending',
+    Lender: 'Reed',
+    Borrower: 'Avery',
+    ToolLoaned: 'wrench',
+    TransactionPeriod: 
+     { Start: 'Sat Dec 31 2016 07:00:00 GMT-0700 (MST)',
+       End: 'Mon Jan 16 2017 06:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'approved',
+    Lender: 'Reed',
+    Borrower: 'Jamie',
+    ToolLoaned: 'nail-gun',
+    TransactionPeriod: 
+     { Start: 'Mon Dec 19 2016 12:00:00 GMT-0700 (MST)',
+       End: 'Sat Jan 21 2017 16:00:00 GMT-0700 (MST)' } },
   { transactionStatus: 'cancelled',
+    Lender: 'Reed',
+    Borrower: 'Ashton',
+    ToolLoaned: 'nail-gun',
+    TransactionPeriod: 
+     { Start: 'Fri Nov 11 2016 07:00:00 GMT-0700 (MST)',
+       End: 'Fri Jan 20 2017 01:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'cancelled',
+    Lender: 'Reed',
+    Borrower: 'Jamie',
+    ToolLoaned: 'hammer',
+    TransactionPeriod: 
+     { Start: 'Mon Apr 25 2016 14:00:00 GMT-0600 (MDT)',
+       End: 'Thu Jan 05 2017 18:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'rejected',
+    Lender: 'Reed',
+    Borrower: 'Avery',
+    ToolLoaned: 'nail-gun',
+    TransactionPeriod: 
+     { Start: 'Sun Oct 09 2016 17:00:00 GMT-0600 (MDT)',
+       End: 'Wed Dec 14 2016 19:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'committed',
     Lender: 'Stevia',
     Borrower: 'Reed',
     ToolLoaned: 'wrench',
     TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'committed',
-    Lender: 'Bob',
+     { Start: 'Mon Sep 26 2016 17:00:00 GMT-0600 (MDT)',
+       End: 'Mon Jan 30 2017 17:00:00 GMT-0700 (MST)' } },
+  { transactionStatus: 'approved',
+    Lender: 'Ashton',
     Borrower: 'Reed',
     ToolLoaned: 'wrench',
     TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'pending',
-    Lender: 'Reed',
-    Borrower: 'Ashton',
-    ToolLoaned: 'nail-gun',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'cancelled',
-    Lender: 'Alice',
-    Borrower: 'Reed',
-    ToolLoaned: 'screwdriver',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } },
-  { transactionStatus: 'committed',
-    Lender: 'Avery',
-    Borrower: 'Reed',
-    ToolLoaned: 'hammer',
-    TransactionPeriod: 
-     { Start: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)',
-       End: 'Sun Mar 06 2016 15:52:47 GMT-0700 (MST)' } } ]; 
+     { Start: 'Fri Mar 04 2016 08:00:00 GMT-0700 (MST)',
+       End: 'Sun May 29 2016 07:00:00 GMT-0600 (MDT)' } } ]; 
