@@ -1,0 +1,75 @@
+<h1> Prototyping for lending, borrowing, and transaction history</h1>
+<!-- <script> -->
+	<!-- 	// Check if user logged in. If not, redirect or something... -->
+<!-- 	var ref = new Firebase("https://amber&#45;torch&#45;1283.firebaseio.com/"); -->
+<!-- 	ref.onAuth(function(authData) { -->
+<!-- 		if(authData) { -->
+<!-- 			alert("authenticated with uid " + authData.uid); -->
+<!-- 		} else { -->
+<!-- 			alert("No one logged in!!!") -->
+<!-- 		} -->
+<!-- 	}); -->
+<!-- </script> -->
+
+<script>
+	function myFunction(g) {
+		console.log(g);
+	}
+</script>
+<style>
+	.pending {
+		background-color: tan
+	}
+	.approved {
+		background-color: lightblue
+	}
+	.rejected {
+		background-color: pink
+	}
+	.cancelled {
+		background-color: lightgray
+	}
+	.committed {
+		background-color: lightgreen
+	}
+	#transaction-history-panel {
+		width: 600px;
+	}
+	.respondent-actions {
+		float: right;
+	}
+
+</style>
+<div id="transaction-history-panel" align="left">
+
+	<span class="addTool glyphicon-plus text-left" ng-click="createNewRequest()">Make a new request</span>
+	<ul class="list-group">
+		<li ng-repeat="t in transactions" class="list-group-item" ng-class="[t.transactionStatus]">
+			<!-- {{t.transactionStatus}} -->
+			<!-- <input type=text ng&#45;model="t" onchange="myFunction()"></input> -->
+			<!-- <input type=text ng&#45;model="t", ng&#45;change="myFunction(t)"></input> -->
+			<!-- <input type=text ng&#45;model="t.transactionStatus"></input> -->
+			<!-- <div ng&#45;class="[t.transactionStatus, userInvolvement(t)]"> -->
+				<!-- <div ng&#45;class="[t.transactionStatus]"> -->
+					<!-- <input type=button class="btn" ng&#45;show="true==true" ng&#45;value="t.transactionStatus"/> -->
+					<!-- <div ng&#45;show="getUserId()==t.Lender &#38;&#38; t.transactionStatus=='pending'"> -->
+
+						
+						<span>Borrower: {{t.Borrower}}</span>
+						<span>, Lender: {{t.Lender}}</span>
+						<span ng-if="getUserId()==t.Lender && t.transactionStatus=='pending'" class="respondent-actions">
+							<input type=button class="btn-sm" value="approve" ng-click="advanceTransaction(t)"//>
+							<input type=button class="btn-sm" value="reject" ng-click="termTransaction(t)"//>
+						</span>
+						<span ng-if="getUserId()==t.Borrower && t.transactionStatus=='approved'" class="respondent-actions">
+							<input type=button class="btn-sm" value="commit" ng-click="advanceTransaction(t)"/>
+							<input type=button class="btn-sm" value="cancel"ng-click="termTransaction(t)"/>
+						</span>
+						<!-- <input type=button class="btn" ng&#45;value=""/> -->
+						<!-- <input type=text ng&#45;model="t.transactionStatus" ng&#45;change="transactions.$save(t)"></input> -->
+						<br/>
+					<!-- </div> -->
+					<!-- <br/> -->
+				</li>
+			</ul>
+		</div>
