@@ -1,1 +1,51 @@
-<h1>Page 1</h1>
+<head>
+</head>
+<body>
+	<img id="profileImg" src={{userData.profileImg}} />	
+	<div id="profileInfo">
+		 <strong> Name:</strong> {{userData.name}} </br>
+		 <strong>Address:</strong> {{userData.address}}</br>
+		 <strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}
+	</div>	
+	
+	<div id="userTools">
+		<h2> User Tools </h2>
+		<!-- Add Tool: 
+		<input type="text" id="myText"> </input> <button ng-click="addTool()"> Go </button> -->
+		<button ng-click="addTool()"> Add Tool </button>
+		<div>
+			<ol ng-repeat="pTool in allProgramTools" ng-if="displayProgramTools">
+				<li ng-click="displayChildrenTools(pTool)">
+					{{pTool.parentTool}}
+					<ul ng-repeat="cTool in pTool.childrenTools">
+						<li ng-if="pTool.clicked">
+						<input type="checkbox">	{{cTool}} <br>
+						</li>
+					</ul>
+				</li>
+			</ol>
+			</br>
+			<button ng-click="endAddTool()" ng-if="doneButtonDisplay"> Done </button>
+		</div>
+	</div>
+	
+	<!--
+	<div id="Rented Tools">
+		<table border="1">
+		<caption>Rented Tools</caption>
+		<thead>
+			<tr>
+				<th>tool</th>
+				<th>due date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tool in rentalTools">
+				<td> {{tool.tool}} </td>
+				<td> {{tool.dueDate}} </td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	-->
+</body>

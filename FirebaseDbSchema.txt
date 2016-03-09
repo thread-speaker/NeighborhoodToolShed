@@ -1,0 +1,130 @@
+﻿{
+users:{
+  $uid:{
+    "email":$email,
+    "name":$name,
+    "location":{
+      country:$country,
+      state/province:$state,
+      city:$city,
+      zip/postal code: $zip/postal code,
+      address: $address
+    },
+    "groups":{
+      alpha: true
+    }
+    "tools":{
+      $toolname:true
+    }
+    "privateMessages":{
+      pm1:true
+    }
+  }
+},
+
+
+userZones:{
+  $country:{
+    $state/province:{
+      $city:{
+        $zip/postal code:{
+          $uid:true
+        }
+      }
+    }
+  }
+},
+
+
+groups:{
+  alpha:{
+    "name": "Alpha Group",
+    "members":{
+      $uid: true,
+      ...
+    }
+  },
+  bravo:{
+    ...
+  },
+  ...
+
+
+},
+groupMessages:{
+  $gmid:{
+    $groupid:{
+      "body":$text,
+      "poster":$uid
+
+
+    }
+  }
+},
+projects:{
+  p1: {
+    "admins":{},
+    "users": {},
+    "location": {},
+    "startTime":$time,
+    "endTime":$time,
+    "toolsNeeded"{
+      $toolId:{
+        countNeeded:$#,
+        countObtained:$#,
+        }
+      },
+    "public": true,
+    "paid": true,
+    "projectSize": $numPeople
+  }
+},
+
+
+privateMessages:{
+  pm1:{
+    "sender":$uid,
+    "recipient":$uid,
+    "body":$body,
+    "timestamp":$time
+  },
+  ...
+
+
+}
+
+newTools:{ //misleading title
+  $Genus:{
+    $Species:{
+      $uid: true,
+      $uid: true
+    }
+  }
+
+}
+
+tools:{
+  $toolId:{
+    "genus": "hammer",
+    "species":"clawed hammer",
+  }
+  toolTwo:{}
+}
+
+transactions:{
+  $transactionId:{
+      transactionStatus: "Pending" || "Active" || "Ended", //One of these values
+      Lender:$uid,
+      Borrower:$uid,
+      ToolLoaned:$toolObject {$genus:$species}
+      TransactionPeriod:{
+        Start:$date,
+        End:$date
+      }
+  }
+}
+
+
+
+
+}
