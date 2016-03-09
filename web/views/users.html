@@ -1,10 +1,18 @@
 <h1>Users</h1>
 
-<ul id="searchResults">
+<div ng-if="!location">
+  Loading...
+</div>
+<ul id="searchResults" ng-if="location">
   <li ng-repeat="user in usersToDisplay">
+    <div>
       <strong>
         {{user.name}}
       </strong>
-      {{user | json}}
+      {{distance(user.location,location)}} miles away.
+      <div>
+        [Tool Name] <button ng-click="request(user)">Request to Borrow</button>
+      </div>
+    </div>
   </li>
 </ul>
