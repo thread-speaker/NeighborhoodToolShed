@@ -1,0 +1,98 @@
+<h1> Prototype view & controller for lending, borrowing, and transaction history</h1>
+<style>
+	.new {
+		background-color: beige
+	}
+	.pending {
+		background-color: tan
+	}
+	.approved {
+		background-color: lightblue
+	}
+	.rejected {
+		background-color: pink
+	}
+	.cancelled {
+		background-color: lightgray
+	}
+	.committed {
+		background-color: lightgreen;
+		/* display: inline; */
+	}
+	#side-panel {
+		float: left;
+		width:300px;
+		height: 500px;
+	}
+	#transaction-history-panel {
+		float: left;
+		width: 600px;
+	}
+	.respondent-actions {
+		float: right;
+	}
+	.small-box {
+		/* float: right; */
+		/* width: 20px; */
+		/* height: 20px; */
+		/* margin: 5px; */
+	}
+</style>
+<span class="text-left">
+	<br/>
+	<div id="side-panel">
+	<div style="height:80px;float:top">
+		Transaction status colors: <br/>
+		<span class="small-box new">new</span>
+		<span class="small-box pending">pending</span>
+		<span class="small-box approved">approved</span>
+		<span class="small-box rejected">rejected</span><br/>
+		<span class="small-box committed">committed</span>
+		<span class="small-box cancelled">cancelled</span><br/>
+	</div>
+	<div style="height:120px;float:bottom">
+		<b>Repopulate transactions with random mock data:</b> <br/>
+		number of transactions: <br/><input type="text" ng-model="num_transactions"/><br/>
+		user name (person logged in):<br/> <input type="text" ng-model="u_id"/><br/>
+		<button class="btn" ng-click="genMockTransactionList(num_transactions, u_id)">repopulate</button>
+
+	</div>
+	</div>
+</span>
+<div id="transaction-history-panel" align="left">
+	<span class="addTool glyphicon-plus text-left" ng-click="createNewRequest()">Make a new request</span>
+	<ul class="list-group">
+		<li ng-repeat="t in transactions" class="list-group-item" ng-class="[t.transactionStatus]">
+			<span>Borrower: {{t.Borrower}}</span>
+			<span>, Lender: {{t.Lender}}</span>
+			<span>, Tool: {{t.ToolLoaned}}</span><br/>
+			<span>, Start: {{t.TransactionPeriod.Start}}</span>
+			<span>, End: {{t.TransactionPeriod.End}}</span>
+			<span ng-if="getUserId()==t.Lender && t.transactionStatus=='pending'" class="respondent-actions">
+				<input type=button class="btn-sm" value="approve" ng-click="advanceTransaction(t)"//>
+				<input type=button class="btn-sm" value="reject" ng-click="termTransaction(t)"//>
+			</span>
+			<span ng-if="getUserId()==t.Borrower && t.transactionStatus=='approved'" class="respondent-actions">
+				<input type=button class="btn-sm" value="commit" ng-click="advanceTransaction(t)"/>
+				<input type=button class="btn-sm" value="cancel"ng-click="termTransaction(t)"/>
+			</span>
+			<span ng-if="t.transactionStatus=='new'">
+				<!-- Lender: <input type=text ng&#45;model="t.Lender"/> -->
+				<!-- Tool: <input type=text ng&#45;model="t.Tool"/> -->
+				<br/>
+				Lender: <select ng-model="t.Lender">
+					<option ng-repeat="user in mockUsers" >{{user}}</option>
+				</select>
+				Tool: <select ng-model="t.ToolLoaned">
+					<option ng-repeat="tool in mockTools" ng-value="tool">{{tool}}</option>
+				</select>	
+			</select>
+			Rental period length (in weeks): <select ng-model="t.TransactionPeriod.End">
+				<option ng-repeat="n in [1,2,3,4,5,6,7,8]" ng-value="getEndDate(t.TransactionPeriod.Start,n)">{{n}}</option>
+			</select>
+			<input type=button class="btn-sm" value="send request" ng-click="sendNewRequest(t)"/>
+		</span>
+		<br/>
+	</li>
+</ul>
+</div>
