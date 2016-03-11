@@ -8,7 +8,7 @@
 	
 	
 	<div id="profileInfo" ng-if="showProfileInfo()">
-		<button ng-click="isEditMode()">Edit Profile Info</button></br>
+		<button ng-click="setEditMode(true)">Edit Profile Info</button></br>
 		<strong> Name:</strong> {{userData.name}} </br>
 		<strong>Address:</strong> {{userData.address}}</br>
 		<strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}</br>
@@ -20,7 +20,7 @@
 		<strong> Name:</strong><input type="text" ng-Model="userData.name"/></br>
 		<strong> Address:</strong><input type="text" ng-Model="userData.address"/></br>
 		<strong> Preferred Contact Information:</strong><input type="text" ng-Model="userData.preferredContactInfo"/></br>
-		<button ng-click="finishEditMode()"> Finished </button>
+		<button ng-click="setEditMode(false)"> Finished </button></br>
 	</div>
 	
 	<div ng-Hide="updateMode" style="border: 1px solid gray">
@@ -35,7 +35,7 @@
 		<div>
 			<ol ng-repeat="gTool in allProgramTools" ng-if="displayProgramTools">
 				<li>
-					<header ng-click="displayChildrenTools(gTool)"> {{gTool.genusTool}}</header>
+					<header ng-click="setClickOnTools(gTool)"> {{gTool.genusTool}}</header>
 					<ul ng-repeat="sTool in gTool.speciesTools">
 						<li ng-if="gTool.clicked">
 						<input type="checkbox" ng-change="updateTool(gTool, sTool)" ng-model="checkedTools" ng-init="checkedTools=isToolOwnedBoolean(gTool,sTool)" />{{sTool}} </br>
@@ -47,4 +47,120 @@
 			<button ng-click="endAddTool()" ng-if="doneButtonDisplay"> Done </button>
 		</div>
 	</div>
+	
+	
+	
+	
+	<!-- <div style="max-width:900px;margin:0 auto;padding:100px 0;"> --.
+
+        <!-- <div style="float:left;padding-top:100px;">
+            <div id="thumbnail-slider">
+                <div class="inner">
+                    <ul>
+                        <li>
+                            <a href="/">
+                                <span class="thumb" style="background-image:https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg">
+                                    This slide demonstrates how to link the thumbnail image to another web page.
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href=https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+		
+		
+		<!--
+        <div style="float:left;padding-left:100px;">
+            <div id="thumbs2">
+                <div class="inner">
+                    <ul>
+                        <li>
+                            <a href="/">
+                                <span class="thumb" style="background-image:url(img/1.jpg)">
+                                    This slide demonstrates how to link the thumbnail image to another web page.
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                        <li>
+                            <a class="thumb" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAKvAAAAJDRkZjNhYmE5LTIzNWUtNGU0ZS04ZTBmLWVhMmYwZjY2NThmYg.jpg"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>-->
+
+    <!--</div>
+    --end
+    <div style="max-width:700px;margin:0 auto 80px;">
+        <header><span>Demo 1</span> <a href="demo2.html">Demo 2</a> <a href="demo3.html">Demo 3</a> <a href="demo4.html">Demo 4</a> <a href="demo5.html">Demo 5</a> <a href="demo6.html">Demo 6</a></header>
+        <h1>Demo 1: Menucool jQuery Slider</h1>
+        <p>This demo contains two thumbnail sliders: one is horizontal and another is vertical.</p>
+        <p><a href="http://www.menucool.com/jquery-slider">Full documentation of the image slider</a>.</p>
+    </div> -->
 </body>
