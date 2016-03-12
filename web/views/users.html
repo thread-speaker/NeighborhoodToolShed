@@ -2,9 +2,8 @@
 
 <ul id="searchResults">
   <li ng-repeat="user in usersToDisplay">
-      <strong>
+    <strong>
         {{user.name}}
-      </strong>
-      {{user | json}}
+      </strong> {{user | json}}
   </li>
 </ul>
