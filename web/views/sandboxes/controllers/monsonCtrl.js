@@ -34,5 +34,11 @@ app.controller('monsonCtrl',
 			lon : -115.1522
 		    }
 		];
+		
+		$scope.mapOptions = {
+			zoom: 4,
+			center: new google.maps.LatLng(40.0000, -98.0000),
+			mapTypeId: google.maps.MapTypeId.TERRAIN
+		};
 	}
 );

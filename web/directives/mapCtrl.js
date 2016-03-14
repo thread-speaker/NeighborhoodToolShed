@@ -8,8 +8,9 @@ app.directive('map', function(){
         scope: {
             mapid: '@',
             mapmarkers: '=',
+			options:'=',
         },
-        template: '<div id="map" style="height:420px;width:600px;"></div>',
+        template: '<div id="map"></div>',
         controller: 'mapCtrl',
     };
 });
@@ -19,7 +20,8 @@ app.controller('mapCtrl', function ($scope) {
     var element = document.getElementById('map');
     element.id = $scope.mapid;
 
-    var mapOptions = {
+	//TODO: Add custimization
+    var mapOptions = $scope.options || {
         zoom: 4,
         center: new google.maps.LatLng(40.0000, -98.0000),
         mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -36,7 +38,8 @@ app.controller('mapCtrl', function ($scope) {
         var marker = new google.maps.Marker({
             map: $scope.map,
             position: new google.maps.LatLng(info.lat, info.lon),
-            title: info.title
+            title: info.title,
+			//icon: some .png or whatever
         });
         marker.content = info.content;
         
