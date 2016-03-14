@@ -1,16 +1,17 @@
 <head>
 </head>
+
 <body>
-	<img id="profileImg" src={{userData.profileImg}} />	
+	<img id="profileImg" src={{userData.profileImg}} />
 	<div id="profileInfo">
-		 <strong> Name:</strong> {{userData.name}} </br>
-		 <strong>Address:</strong> {{userData.address}}</br>
-		 <strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}
-	</div>	
-	
+		<strong> Name:</strong> {{userData.name}} </br>
+		<strong>Address:</strong> {{userData.address}}</br>
+		<strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}
+	</div>
+
 	<div id="userTools">
 		<h2> User Tools </h2>
-		<!-- Add Tool: 
+		<!-- Add Tool:
 		<input type="text" id="myText"> </input> <button ng-click="addTool()"> Go </button> -->
 		<button ng-click="addTool()"> Add Tool </button>
 		<div>
@@ -19,7 +20,8 @@
 					{{pTool.parentTool}}
 					<ul ng-repeat="cTool in pTool.childrenTools">
 						<li ng-if="pTool.clicked">
-						<input type="checkbox">	{{cTool}} <br>
+							<input type="checkbox"> {{cTool}}
+							<br>
 						</li>
 					</ul>
 				</li>
@@ -28,7 +30,7 @@
 			<button ng-click="endAddTool()" ng-if="doneButtonDisplay"> Done </button>
 		</div>
 	</div>
-	
+
 	<!--
 	<div id="Rented Tools">
 		<table border="1">

@@ -10,6 +10,7 @@
 		<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
 		<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="http://maps.googleapis.com/maps/api/js?extension=.js"></script>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/sandstone.min.css">
@@ -23,6 +24,11 @@
 					.when('/', {
 						templateUrl: '/views/dashboard.html',
 						controller: 'dashboardCtrl',
+						caseInsensitiveMatch: true
+					})
+					.when('/login', {
+						templateUrl: '/views/login.html',
+						controller: 'loginController',
 						caseInsensitiveMatch: true
 					})
 					.when('/SearchCriteria', {
@@ -42,6 +48,11 @@
 					.when('/Sandboxes/cloward', {
 						templateUrl: '/views/sandboxes/cloward.html',
 						controller: 'clowardCtrl',
+						caseInsensitiveMatch: true
+					})
+					.when('/Sandboxes/dtb', {
+						templateUrl: '/views/sandboxes/dtb.html',
+						controller: 'dtbCtrl',
 						caseInsensitiveMatch: true
 					})
 					.when('/Profile', {
@@ -72,11 +83,16 @@
 		<script src="controllers/usersCtrl.js"></script>
 		<script src="controllers/savedContactsCtrl.js"></script>
 		<script src="controllers/searchCriteriaCtrl.js"></script>
+		<script src="controllers/loginController.js"></script>
 
 
 		<!-- sandbox controllers added like this -->
 		<script src="views/sandboxes/controllers/monsonCtrl.js"></script>
 		<script src="views/sandboxes/controllers/clowardCtrl.js"></script>
+		<script src="views/sandboxes/controllers/dtbCtrl.js"></script>
+
+		<!-- directives -->
+		<script src="directives/mapCtrl.js"></script>
 
 	</head>
 
@@ -103,7 +119,7 @@
 						<li><a href="#sandboxes">Sandboxes</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a style="padding: 15px" href="#">Login</a></li>
+						<li><a style="padding: 15px" href="#login">Login</a></li>
 					</ul>
 				</div>
 			</div>
