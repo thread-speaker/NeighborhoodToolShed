@@ -258,5 +258,5 @@
 /* The nav id should be: slider id + ("-prev", "-next", and "-pause-play") */
 
 #thumbnail-slider-pause-play {display:none;} /*.pause*/
-#thumbnail-slider-prev, #thumbnail-slider-next {display:none;}
+#thumbnail-slider-prev, #thumbnail-slider-next {display:none;}	
 
