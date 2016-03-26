@@ -1,4 +1,4 @@
-<h1>Users</h1>
+<h1>Available Tools</h1>
 
 <ul id="searchResults">
   <li ng-repeat="user in usersToDisplay">
@@ -7,6 +7,10 @@
       </strong> {{user | json}}
   </li>
 </ul>
-<div ng-if="loaded">
-	<map mapid="usersmap" mapmarkers="usermarkers" style="height:420px;width:600px;" options=""/>
+<div class="container">     
+    <div class="centered-block">      
+        <div ng-if="loaded">
+			<map mapid="usersmap" mapmarkers="usermarkers" style="height:420px;width:600px;" options=""/>
+		</div>
+    </div> 
 </div>
