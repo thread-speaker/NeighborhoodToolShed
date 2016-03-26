@@ -6,7 +6,7 @@ app.controller('searchCriteriaCtrl',
 	var tools = ref.child("tools");
 
     //Grab search queries
-    $scope.queries = $route.current.params.filter.split(',');
+    $scope.queries = window.localStorage.queries.split(',');
 
     //Add them to the ng-repeat array;
     $scope.queryResults = $firebaseArray(tools.orderByChild("genus"));

@@ -1,11 +1,11 @@
 <head>
 </head>
+
 <body>
 
-	<img id="profileImg" src={{userData.profileImg}} />	
+	<img id="profileImg" src={{userData.profileImg}} />
 	</br>
 	</br>
-	
 	
 	<div id="profileInfo" ng-if="showProfileInfo()">
 		<button ng-click="setEditMode(true)">Edit Profile Info</button></br>
@@ -15,21 +15,21 @@
 	</div>
 	</br>
 	</br>
-	
+
 	<div id="profileInfo" ng-if="showEditProfileInfo()">
 		<strong> Name:</strong><input type="text" ng-Model="userData.name"/></br>
 		<strong> Address:</strong><input type="text" ng-Model="userData.address"/></br>
 		<strong> Preferred Contact Information:</strong><input type="text" ng-Model="userData.preferredContactInfo"/></br>
 		<button ng-click="setEditMode(false)"> Finished </button></br>
 	</div>
-	
+
 	<div ng-Hide="updateMode" style="border: 1px solid gray">
 	<h2>User Tool List</h2>
 		<div ng-repeat="gTool in ownedTools">
 			<p ng-repeat="sTool in gTool.speciesTools"><strong> {{gTool.genusTool + " " + sTool}} </strong></p>
 		</div>
 	</div>
-	
+
 	<div id="userTools">
 		<button ng-click="updateToolButton()"> Update Tool List </button>
 		<div>
@@ -39,6 +39,7 @@
 					<ul ng-repeat="sTool in gTool.speciesTools">
 						<li ng-if="gTool.clicked">
 						<input type="checkbox" ng-change="updateTool(gTool, sTool)" ng-model="checkedTools" ng-init="checkedTools=isToolOwnedBoolean(gTool,sTool)" />{{sTool}} </br>
+
 						</li>
 					</ul>
 				</li>
@@ -47,7 +48,6 @@
 			<button ng-click="endAddTool()" ng-if="displayDoneButton"> Done </button>
 		</div>
 	</div>
-	
 	 <div style="padding:120px 0;">
         <div id="thumbnail-slider">
             <div class="inner">
@@ -85,6 +85,6 @@
                 </ul>
             </div>
         </div>
-    </div> 
+    </div>
     <!--end-->
 </body>
