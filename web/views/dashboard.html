@@ -1,6 +1,9 @@
 <span class="dashboard">
+      <img src="./NTLogo.png" class="img-rounded">
+    <!-- End of JumboTron -->
+    <div class="container">
 
-	Select type of tool(s): <br/>
+     	Select type of tool(s): <br/>
 	<span ng-repeat="input in commonQueries">
 		<select ng-model="input.query">
 			<option ng-repeat="tool in commonTools | filter:isFirstInstanceOf" ng-value="tool.genus">{{tool.genus}}</option>
@@ -11,3 +14,7 @@
 
 	<input type="button" class="btnGo btn-default" ng-click="goClick()" value="Go"></input>
 </span>
+
+
+    <!-- Close the container that is opened up in header.html -->
+    </div>
