@@ -1,4 +1,4 @@
-<h1>Available Tools</h1>
+<!-- <h1>Available Tools</h1>
 
 <ul id="searchResults">
   <li ng-repeat="user in usersToDisplay">
@@ -6,11 +6,17 @@
         {{user.name}}
       </strong> {{user | json}}
   </li>
-</ul>
+</ul> -->
 <div class="container">     
     <div class="centered-block">      
         <div ng-if="loaded">
-			<map mapid="usersmap" mapmarkers="usermarkers" style="height:420px;width:600px;" options=""/>
+			<div class="map-selector-header">
+				Users with:
+				<div class="map-selectors">
+					<div class="selector-button selected-item">All Tools</div><div class="selector-button">Cordless</div><div class="selector-button">Buggy Bar</div>
+				</div>
+			</div>
+			<map mapid="usersmap" mapmarkers="usermarkers" style="height:500px;width:800px;" options="mapOptions"/>
 		</div>
     </div> 
 </div>

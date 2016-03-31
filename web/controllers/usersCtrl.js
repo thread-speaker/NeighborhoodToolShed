@@ -14,6 +14,11 @@ app.controller('usersCtrl',
         "latitude": position.coords.latitude,
         "longitude": position.coords.longitude
       };
+	  $scope.mapOptions = {
+        zoom: 9,
+        center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
       //TODO reverse geocoding
       // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
 
@@ -27,8 +32,23 @@ app.controller('usersCtrl',
 		if (window.localStorage.toolsSearched)
 		  toolsSearched = JSON.parse(window.localStorage.toolsSearched)
 
+		var lastLoadedUser;
+		var lastCheckedUser;
+		var finishLoading = function() {
+			if (lastLoadedUser) {
+				if (lastCheckedUser !== lastLoadedUser) {
+					lastCheckedUser = lastLoadedUser;
+				}
+				else {
+					$scope.loaded = true;
+					$scope.$apply();
+				}
+			}
+		}
+	  
 		var users = [];
 		// var users = {};
+		setInterval(finishLoading, 100);
 		for (var t in toolsSearched) {
 		  var tool = toolsSearched[t];
 		  var toolsUsers = newTools.child(tool.genus).child(tool.species).child("users").on("child_added", function(snap) {
@@ -61,34 +81,9 @@ app.controller('usersCtrl',
 				  lon: user.location.longitude,
 				  content: toolList
 			  });
-			  $scope.loaded = true;
+			  lastLoadedUser = user.name;
 			});
 			users.push(user);
-			// user.on("child_added", function(snap){
-			// 	// console.log("apply");
-			//   var key = snap.key();
-			//   var val = snap.val();
-			//
-			//
-			//   if (!users.hasOwnProperty(uid)){
-			//     users[uid] = {};
-			// 	}
-			// 	if (key == "location"){
-			// 		var distance = $scope.distance(location, val);
-			// 		users[uid]["distance"] = distance;
-			// 	}
-			//
-			//   $scope.$apply(function(){users[uid][key] = val;});
-			//
-			//   // console.log("users" + users);
-			// });
-
-
-			// user.once("value", function(snap){
-			// 	console.log("test");
-			// 	users = orderBy(users, "distance", false);
-			// });
-			//
 		  });
 		}
 
@@ -100,10 +95,6 @@ app.controller('usersCtrl',
 		  }]
 
 		function usersWithTools(toolsSearched) {
-		  // console.log(toolsSearched);
-		  // first = toolsSearched[0];
-		  // test = $firebaseObject(newTools.child(first.genus).child(first.species));
-		  // test.$loaded(function(){});
 		  return users;
 		};
 
@@ -128,13 +119,3 @@ app.controller('usersCtrl',
 	  }
   }
 );
-
-
-// return [
-// 	{
-// 		"username" : "Curt"
-// 	},
-// 	{
-// 		"username" : "Paul"
-// 	}
-// ];

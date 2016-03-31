@@ -219,6 +219,43 @@ h3{
 	}				
 }
 
+.map-selector-header{
+	text-align:left;
+	font-size:1.5em;
+}
+
+.map-selectors{
+	max-width:800px;
+	font-size:2em;
+}
+
+.map-selectors:first-child{
+	border-left:3px solid #999966;
+}
+
+.selector-button{
+	border:3px solid #999966;
+	border-left:none;
+	background-color:#f9c986;
+	padding:10px;
+	margin:none;
+	display:inline-block;
+	line-height:1em;
+}
+
+.selector-button:hover{
+	cursor:pointer;
+	background-color:#f6b355;
+}
+
+.selected-item{
+	background:#f4a32e;
+}
+
+.centered-block{
+	max-width:800px;
+	margin: auto;
+}
 
 /* endRegion */
 
