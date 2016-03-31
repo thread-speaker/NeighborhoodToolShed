@@ -57,10 +57,15 @@ app.controller('dashboardCtrl',["$scope", "$firebaseArray",
 			}
 
 			window.localStorage.queries=filterString
-			window.location =  "#SearchCriteria";
-			
-			
-			
+			window.location =  "#SearchCriteria";			
 		};
+		
+		$scope.clearClick = function() {
+			window.localStorage.queries = [];
+			$scope.commonQueries = [];
+			$scope.commonQueries.push({
+				"query" : ""
+			});
+		}
 	}
 ]);

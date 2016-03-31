@@ -40,8 +40,9 @@
 	/* Desktop mode navBar */
 	@media (min-width: 768px) {
 		.logo {
-			font-size: 1.5em;
-			color: #cce5ff;
+			font: 1.5em Arial;
+			font-weight: bold;
+			color: #3d3d29;
 		}
 
 		.navbar {
@@ -61,8 +62,13 @@
 		}
 
 		.navbar-nav>li>a {
+			font: 1em Arial;
 			padding: 1.6em 1.3em 0 1.3em;
+			font-weight: bold;
 		}
+			.navbar-nav>li>a:hover{
+				color: #5c5c3d;
+			}
 	}
 
 
@@ -73,14 +79,27 @@
 /* region NavBar */
 
 	.logo {
-		font-size: 1.2em;
-		color: #cce5ff;
+		font: 1.2em Arial;
+		font-weight: bold;
+		color: #3d3d29;
 	}
 
 	.logo:hover {
-		color: #ccccff;
+		color: #5c5c3d;
+	}
+	
+	.neighborNav {
+		max-width: 1200px;
 	}
 
+	.navbar-nav>li>a {
+		font: 1.1em Arial;
+		font-weight: bold;
+	}
+
+	.navbar-nav>li>a:hover{
+		color: #5c5c3d;
+	}
 /* endRegion */
 
 
@@ -94,6 +113,7 @@
 		margin-left: .2em;
 		font-size: 1.35em;
 		font-weight: bold;
+		width: 10px;
 		padding: 0 .2em 0 .2em;
 	}
 
@@ -101,7 +121,13 @@
 			cursor: pointer;
 			color: #A6A6A6;
 		}
-
+	
+	.emptySpace {
+		width:10px;
+		margin-left: .2em;
+		padding: 0 .2em 0 .2em;
+	}
+		
 	.btnGo {
 		margin-top: 20px;
 	}
@@ -110,11 +136,87 @@
 
 /* region SearchResults */
 #searchResults {
-		list-style: none;
+	list-style: none;
     margin: 0px;
     padding: 20px;
     /*height: 20px;*/
     /*overflow: auto;*/
+}
+
+.toolSelect {
+		max-width: 800px;
+		margin:auto;
+}
+
+.toolGenus {
+	font-weight: bold;
+	font-size: 3em;
+	text-align: left;
+	clear: left;
+}
+
+.toolSpecies {
+	background-color: #adad85;
+	border: 3px solid #999966;
+	border-radius:.25em;
+	font-size: 2em;
+	padding: 0 .75em 0 .75em;
+	display: inline-block;
+	float: left;
+	margin-right:.75em;
+	margin-bottom: .5em;
+}
+
+	.toolSpecies:hover {
+		background-color: #ccccb3;
+		cursor: pointer;
+	}
+
+.btnSearch {
+	font-size: 1.5em;
+	margin-bottom: .25em;
+}
+
+.btnBack {
+	float: right;
+	font-size: 1.5em;
+}
+	
+h3{
+	clear: left;
+}
+
+.stretchRight{
+	animation-name: stretchRight;
+	-webkit-animation-name: stretchRight;	
+
+	animation-duration: .5s;	
+	-webkit-animation-duration: .5s;
+
+	animation-timing-function: ease-out;	
+	-webkit-animation-timing-function: ease-out;	
+
+	transform-origin: 0% 0%;
+	-ms-transform-origin: 0% 0%;
+	-webkit-transform-origin: 0% 0%; 		
+}
+
+@keyframes stretchRight {
+	0% {
+		transform: scaleX(0.3);
+	}
+	100% {
+		transform: scaleX(1);
+	}							
+}
+
+@-webkit-keyframes stretchRight {
+	0% {
+		-webkit-transform: scaleX(0.3);
+	}
+	100% {
+		-webkit-transform: scaleX(1);
+	}				
 }
 
 

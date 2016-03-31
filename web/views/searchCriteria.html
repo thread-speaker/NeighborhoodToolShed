@@ -1,17 +1,24 @@
-<h3><input type="button" class="btnGo btn-default" ng-click="searchAll()" value="Search All"/></h3>
- - or -
-<h3>Select all specific tool types that you want to search</h3>
+<div class="ToolSelect">
 
-<ul id="searchResults">
-  <li ng-repeat="tool in queryResults | filter:matchesQueries">
-      <strong>
-      {{tool.genus}}
-      </strong>
-      {{tool.species}}
-	  <input type="checkbox" ng-model="tool.checked" ng-change="checkChange(tool)" />
-  </li>
-</ul>
+	<h2>Select all specific tool types that you want to search</h2>
 
-<h3><input type="button" class="btnGo btn-default" ng-click="searchSelected()" value="Search Selected"/></h3>
+	<span ng-repeat="tool in queryResults | filter:matchesQueries">
+		<div ng-if="isFirstGenus(tool)" class="toolGenus">{{tool.genus}}</div>
+		<div class="toolSpecies" ng-click="checkChange(tool)">
+			{{tool.species}}
+			<span ng-if="tool.checked" class="stretchRight glyphicon glyphicon-ok"></span>
+		</div>
+	</span>
 
-<h3><a  class="btnGo btn-default" href="#/"> Back </a></h3>
+	<div style="clear:left">
+		<input type="button" class="btnSearch btn-default" ng-click="searchSelected()" value="Search Selected"/>
+
+		 - or -
+
+		<input type="button" class="btnSearch btn-default" ng-click="searchAll()" value="Search All"/>
+
+		<br/>
+		<input type="button"  class="btnBack btn-default" ng-click="goBack()" value="Back"></input>
+	</div>
+
+</div>

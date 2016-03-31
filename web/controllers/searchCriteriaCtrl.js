@@ -34,4 +34,23 @@ app.controller('searchCriteriaCtrl',
 		window.localStorage.toolsSearched = JSON.stringify(toolsSearched);
 		window.location = "#users";
 	}
+	
+	$scope.goBack = function() {
+		window.location = "#/";
+	}
+	
+	$scope.checkChange = function(tool) {
+		var idx = $scope.queryResults.indexOf(tool);
+		$scope.queryResults[idx].checked = !$scope.queryResults[idx].checked;
+	}
+	
+	$scope.isFirstGenus = function(tool) {
+		var idx = $scope.queryResults.indexOf(tool);
+		if(idx == 0)
+			return true;
+		else if($scope.queryResults[idx - 1].genus != $scope.queryResults[idx].genus)
+			return true;
+		else
+			return false;
+	}
 });
