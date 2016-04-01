@@ -88,6 +88,11 @@
 		color: #5c5c3d;
 	}
 	
+	.logoIcon {
+		max-height: 40px;
+		padding: .4em .2em .1em 0;
+	}
+	
 	.neighborNav {
 		max-width: 1200px;
 	}
@@ -100,6 +105,16 @@
 	.navbar-nav>li>a:hover{
 		color: #5c5c3d;
 	}
+	
+	.navLoginIcon {
+		max-height: 40px;
+		padding: .8em .4em .2em 0;
+	}
+
+		.navLoginIcon:hover{
+			cursor: pointer;
+		}
+
 /* endRegion */
 
 
@@ -226,7 +241,7 @@ h3{
 
 .map-selectors{
 	max-width:800px;
-	font-size:2em;
+	font-size:1.842em;
 }
 
 .map-selectors:first-child{
@@ -259,17 +274,58 @@ h3{
 
 /* endRegion */
 
+/* region profile */
+#nameHeader {
+	font-size: 2.5em;
+	float: left;
+	display: inline-block;
+}
 
 #profileImg {
-	
+	float: right;
 	border: 2px solid gray;
+	width: 250px;
+}
+
+#btnEditProfile {
+	float: right;
+	margin: 12px 82px 0 0;
 }
 
 #profileInfo {
-	font-size: 130%;
+	max-width: 900px;
+	margin:auto;
+}
+
+#leftProfileInfo {
+	clear: left;
+	float:left;
+	width:28%;
+}
+
+#rightProfileInfo {
+	padding: 10px;
+	float: right;
+	width:72%
+}
+
+#infoTable td {
+	font-size: 1.25em;
+	padding: 2px 5px 2px 5px;
+}
+
+#bottomProfileInfo{
+	width: 100%;
+	clear: both;
+	margin:auto;
+}
+
+#toolList {
+	clear:left;
 }
 
 #userTools {
+	clear:left;
 	align:center;
 	font-size: 130%;
 }
@@ -302,7 +358,7 @@ h3{
 #thumbnail-slider {
     margin:0 auto; /*center-aligned*/
     width:100%;
-    max-width:900px;
+    max-width:400px;
     padding:0;
     box-sizing:border-box;
     position:relative;
@@ -399,3 +455,17 @@ h3{
 #thumbnail-slider-pause-play {display:none;} /*.pause*/
 #thumbnail-slider-prev, #thumbnail-slider-next {display:none;}	
 
+/* endregion */
+
+
+/* region login */
+
+.loginIcon{
+	max-height: 125px;
+}
+
+	.loginIcon:hover{
+		cursor: pointer;
+	}
+
+/* endregion */

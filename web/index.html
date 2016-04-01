@@ -74,7 +74,82 @@
 						redirectTo: '/'
 					})
 			});
+			
+			app.service('loginServices', function() {
+				var loginServices = {};
+				
+				loginServices.loginFacebook = function(cb) {
+					var ref = new Firebase("https://amber-torch-1283.firebaseio.com/");
+				    var users = ref.child("users");
+					
+					var location = {};
+					if (navigator.geolocation) {
+					  navigator.geolocation.getCurrentPosition(showPosition);
+					} else {
 
+					}
+					function showPosition(position){
+					  location =  {"latitude": position.coords.latitude, "longitude":position.coords.longitude };
+					  //TODO reverse geocoding
+					  // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
+					}
+
+					ref.authWithOAuthPopup("facebook", function(error, authData) {
+						var updateObj = {}
+						updateObj[authData.uid + "/name"] = authData.facebook.displayName;
+						updateObj[authData.uid + "/email"] = authData.facebook.email;
+						updateObj[authData.uid + "/location"] = location;
+						//Use update so we don't destroy data we're not mentioning.
+						users.update(updateObj);
+
+						window.localStorage.name = authData.facebook.displayName;
+						window.localStorage.email = authData.facebook.email;
+						window.localStorage.location = JSON.stringify(location);
+						window.localStorage.lastActiveTime = new Date();
+						var scope = angular.element($("#mainNav")).scope();
+						scope.$apply();
+						cb();
+					},{
+						remember: "default",
+						scope: "email,user_likes"
+					});				
+				}
+				
+				return loginServices;
+			});
+
+			
+			app.controller("navCtrl", ['$scope', 'loginServices', function($scope, loginServices) {
+				$scope.loggedIn = function()  {
+					var oneDayOld = new Date();
+					oneDayOld.setDate(oneDayOld.getDate() - 1);
+					if(!window.localStorage.name || window.localStorage.lastActiveTime < oneDayOld){
+						window.localStorage.name = "";
+						window.localStorage.email = "";
+						window.lastActiveTime = "";
+						window.localStorage.location = {};
+						return false;
+					}
+					else {
+						window.lastActiveTime = new Date();
+						return true;
+					}
+				}
+
+				$scope.logout = function() {
+					window.localStorage.name = "";
+					window.localStorage.email = "";
+					window.lastActiveTime = "";
+					window.localStorage.location = {};					
+				}
+				
+				$scope.loginFacebook = function() {
+					loginServices.loginFacebook(function() {
+						$scope.$apply();
+					});
+				}
+				
+ 			}]);			
 		</script>
 
 		<!-- Page Controllers -->
@@ -97,7 +172,7 @@
 	</head>
 
 	<body ng-app="neighborToolApp">
-		<nav class="navbar navbar-default">
+		<nav id="mainNav" ng-controller="navCtrl" class="navbar navbar-default">
 			<div class="neighborNav container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -113,13 +188,20 @@
 					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="#profile">Profile</a></li>
+<!--					<ul class="nav navbar-nav">
+					<li><a href="#profile">Profile</a></li>
 						<li><a href="#savedContacts">Saved Contacts Test</a></li>
 						<li><a href="#sandboxes">Sandboxes</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					</ul>-->
+					<ul ng-if="!loggedIn()" class="nav navbar-nav navbar-right">
 						<li><a style="padding: 15px" href="#login">Login</a></li>
+						<li><img class="navLoginIcon" src="../includes/icons/facebookIco.png" title="Authenticate via Facebook" ng-click="loginFacebook()"/></li>
+						<li><img class="navLoginIcon" src="../includes/icons/googleIco.png" title="Authenticate via Google+"/></li>
+						<li><img class="navLoginIcon" src="../includes/icons/githubIco.png" title="Authenticate via Github"/></li>
+					</ul>
+					<ul ng-if="loggedIn()" class="nav navbar-nav navbar-right">
+						<li><a style="padding: 15px" href="#profile">Profile</a></li>
+						<li><a style="padding: 15px" href="#/" ng-click="logout()">Logout</a></li>
 					</ul>
 				</div>
 			</div>

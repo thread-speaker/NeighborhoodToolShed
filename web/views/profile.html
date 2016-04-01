@@ -2,28 +2,42 @@
 </head>
 
 <body>
-
-	<img id="profileImg" src={{userData.profileImg}} />
-	</br>
-	</br>
 	
-	<div id="profileInfo" ng-if="showProfileInfo()">
-		<button ng-click="setEditMode(true)">Edit Profile Info</button></br>
-		<strong> Name:</strong> {{userData.name}} </br>
-		<strong>Address:</strong> {{userData.address}}</br>
-		<strong>Preferred Contact Information:</strong> {{userData.preferredContactInfo}}</br>
+	<div id="profileInfo">
+		<div style="width: 100%">
+			<div id="nameHeader">
+				{{userData.name}}
+			</div>
+			<input id="btnEditProfile" type="button" class="btn-default" ng-click="setEditMode(true)" value="Edit Info"></button></br>
+		</div>
+		<div id="leftProfileInfo" ng-if="showProfileInfo()">
+			<img id="profileImg" src={{userData.profileImg}} />
+		</div>
+		<div id="rightProfileInfo">
+			<table id="infoTable">
+				<tr>
+					<td><strong>Email:</strong></td>
+					<td>{{userData.email}} </td>
+				</tr>
+				<tr>
+					<td valign="top" colspan="2"><strong>Location:</strong>
+					<br/><map mapid="usersmap" mapmarkers="usermarkers" style="height:275px;width:550px;" options="mapOptions"/></td>
+				</tr>
+			</table>
+		</div>
+		<div id="bottomProfileInfo">
+		</div>
 	</div>
-	</br>
 	</br>
 
 	<div id="profileInfo" ng-if="showEditProfileInfo()">
 		<strong> Name:</strong><input type="text" ng-Model="userData.name"/></br>
 		<strong> Address:</strong><input type="text" ng-Model="userData.address"/></br>
 		<strong> Preferred Contact Information:</strong><input type="text" ng-Model="userData.preferredContactInfo"/></br>
-		<button ng-click="setEditMode(false)"> Finished </button></br>
+		<input type="button" class="btn-default" ng-click="setEditMode(false)" value="Finished"></input></br>
 	</div>
 
-	<div ng-Hide="updateMode" style="border: 1px solid gray">
+	<div id="toolList" ng-Hide="updateMode" style="border: 1px solid gray">
 	<h2>User Tool List</h2>
 		<div ng-repeat="gTool in ownedTools">
 			<p ng-repeat="sTool in gTool.speciesTools"><strong> {{gTool.genusTool + " " + sTool}} </strong></p>
@@ -31,15 +45,14 @@
 	</div>
 
 	<div id="userTools">
-		<button ng-click="updateToolButton()"> Update Tool List </button>
+		<input type="button" class="btn-default" ng-click="updateToolButton()" value="Update Tool List"></input>
 		<div>
 			<ol ng-repeat="gTool in allProgramTools" ng-if="displayProgramTools">
 				<li>
 					<header ng-click="setClickOnTools(gTool)"> {{gTool.genusTool}}</header>
 					<ul ng-repeat="sTool in gTool.speciesTools">
 						<li ng-if="gTool.clicked">
-						<input type="checkbox" ng-change="updateTool(gTool, sTool)" ng-model="checkedTools" ng-init="checkedTools=isToolOwnedBoolean(gTool,sTool)" />{{sTool}} </br>
-
+							<input type="checkbox" ng-change="updateTool(gTool, sTool)" ng-model="checkedTools" ng-init="checkedTools=isToolOwnedBoolean(gTool,sTool)" />{{sTool}} </br>
 						</li>
 					</ul>
 				</li>
@@ -48,16 +61,10 @@
 			<button ng-click="endAddTool()" ng-if="displayDoneButton"> Done </button>
 		</div>
 	</div>
-	 <div style="padding:120px 0;">
+	 <div class="contactsRoulette" style="padding:120px 0;">
         <div id="thumbnail-slider">
             <div class="inner">
                 <ul>
-                    <li>
-                        <a class="thumb" href="http://www.photo-dictionary.com/photofiles/list/2171/2836construction_worker.jpg"></a>
-                    </li>
-                    <li>
-                        <a class="thumb" href="http://vignette4.wikia.nocookie.net/community-sitcom/images/1/15/Dean_Pelton_as_a_construction_worker.jpg/revision/latest?cb=20121214175738"></a>
-                    </li>
                     <li>
                         <a class="thumb" href="http://www.gfxtr.net/uploads/posts/2015-12/1449215414_shutterstock_336179585-.jpg"></a>
                     </li>
@@ -66,9 +73,6 @@
                     </li>
                     <li>
                         <a class="thumb" href="https://upload.wikimedia.org/wikipedia/commons/c/c7/Jordan_Oregno_construction_worker.JPG"></a>
-                    </li>
-                    <li>
-                        <a class="thumb" href="http://vignette3.wikia.nocookie.net/survivor-org/images/b/b6/Construction_Worker_St_Clair_Street_Car_Project.jpg/revision/latest?cb=20140815092234"></a>
                     </li>
                     <li>
                         <a class="thumb" href="http://vignette1.wikia.nocookie.net/dogpics/images/3/3d/Cute-dog-construction-worker.jpg/revision/latest?cb=20140116212124"></a>

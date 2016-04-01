@@ -66,21 +66,4 @@ app.controller('mapCtrl', function ($scope) {
         e.preventDefault();
         google.maps.event.trigger(selectedMarker, 'click');
     }
-	
-	if ($scope.mapmarkers.length === 0)
-		return;
-	
-	while (true) {
-		for (var i = 0; i < $scope.markers.length; i++)  {
-			var currentBounds = $scope.map.getBounds();
-			if (currentBounds.contains($scope.markers[i].position)) {
-				return;
-			}
-		}
-		if (mapOptions.zoom > 1) {
-			mapOptions.zoom = (mapOptions.zoom - 1);
-			$scope.map.setZoom(mapOptions.zoom);
-		}
-		else return;
-	}
 });

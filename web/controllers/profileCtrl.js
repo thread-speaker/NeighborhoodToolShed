@@ -1,14 +1,32 @@
 var app = angular.module('neighborToolApp');
 
 app.controller('profileCtrl', function($scope) {
-	
+	if(window.localStorage.name == ""){
+		window.location = "#login";
+	}
 	/*
 		userData- An array of user objects in the database. Each object has a name, address, profileImg, and preferredContactInfo 
 	*/
+	$scope.usermarkers = [];
+	var location = JSON.parse(window.localStorage.location);
+	
+	$scope.usermarkers.push({
+		title: window.localStorage.name,
+		lat: location.latitude,
+		lon: location.longitude,
+		content: ""
+	});
+	
+	$scope.mapOptions = {
+		zoom: 12,
+		center: new google.maps.LatLng(location.latitude, location.longitude),
+		mapTypeId: google.maps.MapTypeId.TERRAIN
+	};
+
+
 	$scope.userData = 
-		{ name: "Cole Reasch", profileImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdP09oZrlkkOfpLTbqf0J_-7nSQEQjTXxcr-E4EU4Jd9dddgrEOh63fg",
-			address: "Provo, Utah", preferredContactInfo: "Provo Forever"}
-		
+		{ name: window.localStorage.name, profileImg: "../includes/images/CurtProfile.jpg", email: window.localStorage.email}
+
 
 	$scope.ownedTools = [];
 	$scope.testTools = [];
@@ -232,7 +250,7 @@ var thumbnailSliderOptions =
     thumbWidth: "50%",
     thumbHeight: "auto",
     showMode: 3,
-    autoAdvance: true,
+    autoAdvance: false,
     selectable: true,
     slideInterval: 3000,
     transitionSpeed: 1000,

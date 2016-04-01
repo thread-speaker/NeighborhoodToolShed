@@ -10,15 +10,15 @@ app.controller('usersCtrl',
     } else {}
 
     function showPosition(position) {
-      location = {
-        "latitude": position.coords.latitude,
-        "longitude": position.coords.longitude
-      };
-	  $scope.mapOptions = {
-        zoom: 9,
-        center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-        mapTypeId: google.maps.MapTypeId.TERRAIN
-    };
+		location = {
+			"latitude": position.coords.latitude,
+			"longitude": position.coords.longitude
+		};
+		$scope.mapOptions = {
+			zoom: 9,
+			center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+			mapTypeId: google.maps.MapTypeId.TERRAIN
+		};
       //TODO reverse geocoding
       // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
 
