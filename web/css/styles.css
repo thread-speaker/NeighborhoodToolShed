@@ -289,24 +289,24 @@ h3{
 
 #btnEditProfile {
 	float: right;
-	margin: 12px 82px 0 0;
+	margin: 12px 0 0 0;
 }
 
 #profileInfo {
-	max-width: 900px;
+	max-width: 800px;
 	margin:auto;
 }
 
 #leftProfileInfo {
 	clear: left;
 	float:left;
-	width:28%;
+	width:32%;
 }
 
 #rightProfileInfo {
 	padding: 10px;
 	float: right;
-	width:72%
+	width: 68%
 }
 
 #infoTable td {
